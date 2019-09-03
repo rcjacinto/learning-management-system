@@ -1,0 +1,20 @@
+:host {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    color: #ffffff;
+  }
+
+  ion-content {
+    --background: linear-gradient(
+      135deg,
+      var(--ion-color-primary),
+      var(--ion-color-secondary)
+    );
+  }
+
+  ion-list {
+    &.list-md {
+      padding: 0;
+    }
+  }
+}
