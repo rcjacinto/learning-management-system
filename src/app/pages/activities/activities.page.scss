@@ -1,0 +1,25 @@
+ion-segment-button {
+  --border-color: #222222;
+  --border-radius: 4px;
+  --color: grey;
+  --color-activated: black;
+  --color-checked: black;
+  --indicator-color-checked: darkred;
+  --transition: background-color 15ms linear;
+}
+
+ion-card {
+  ion-card-header {
+    padding: 0;
+  }
+  ion-item {
+    img {
+      width: 100px;
+      margin: 10px 10px 10px 0;
+    }
+  }
+}
+
+.text-wrap {
+  overflow-wrap: normal !important;
+}

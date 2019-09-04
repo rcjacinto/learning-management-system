@@ -1,3 +1,37 @@
 <app-header title="ACTIVITIES"></app-header>
 
-<ion-content> </ion-content>
+<ion-content class="ion-padding-vertical">
+  <ion-card>
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button checked>
+        <ion-label>ALL</ion-label>
+      </ion-segment-button>
+      <ion-segment-button>
+        <ion-label>QUIZ</ion-label>
+      </ion-segment-button>
+      <ion-segment-button>
+        <ion-label>EXAMS</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item lines="none">
+        <img src="assets/images/logo.jpg" alt="" />
+        <ion-label>
+          <h1>Basic Programming</h1>
+          <p class="text-wrap">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis
+            optio tempora rerum. Quasi quos officiis veritatis nihil explicabo
+            voluptas, natus sit ipsum eos, ipsam minus quisquam dicta laborum
+            corrupti incidunt?ß
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      Awesome content
+    </ion-card-content>
+  </ion-card>
+</ion-content>
