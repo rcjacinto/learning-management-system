@@ -1,0 +1,37 @@
+ion-content {
+  --background: #f1f1f1;
+}
+
+ion-card {
+  padding: 0;
+  --background: #ffffff;
+  ion-card-header {
+    padding: 0;
+    ion-card-title {
+      width: 50%;
+      padding: 0.5rem;
+      background-color: #222222;
+      color: #f1f1f1;
+    }
+  }
+}
+ion-item {
+  --border-color: #f00;
+}
+
+.text-wrap {
+  overflow-wrap: normal !important;
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.text-header {
+  margin: 5px 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
