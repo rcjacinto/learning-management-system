@@ -13,6 +13,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: '',
+        redirectTo: '/tabs/dashboard',
+        pathMatch: 'full'
+      },
+      {
         path: 'dashboard',
         loadChildren: '../dashboard/dashboard.module#DashboardPageModule'
       },
@@ -33,11 +38,6 @@ const routes: Routes = [
         loadChildren: '../grades/grades.module#GradesPageModule'
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/dashboard',
-    pathMatch: 'full'
   }
 ];
 

@@ -1,2 +1,92 @@
 <app-header [title]="'DASHBOARD'"></app-header>
-<ion-content> </ion-content>
+<ion-content padding-vertical>
+  <ion-card>
+    <ion-card-header> </ion-card-header>
+    <ion-card-content>
+      <ion-textarea mode="ios" placeholder="Write a post"></ion-textarea>
+      <ion-button (click)="onClick()" fill="clear" id="post-btn">
+        Post
+      </ion-button>
+      <ion-button (click)="onClick()" fill="clear">
+        <ion-icon slot="icon-only" name="attach" class="attach"></ion-icon>
+      </ion-button>
+      <ion-select multiple="true" placeholder="Post to All classes">
+        <ion-select-option value="IT105">IT105</ion-select-option>
+        <ion-select-option value="IT206">IT206</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <img
+        src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/32235484_2144183558932888_3309798898918227968_o.jpg?_nc_cat=101&_nc_oc=AQnkmY2Y_eNMI09n7GIsjx-AojRLaG5PweitpCyH7z9WGiQYOP9BxaRRBFUr73-xAhY&_nc_ht=scontent.fmnl13-1.fna&oh=0c384200574f5fc0fd1d3f5fee975afe&oe=5E0379D6"
+        alt=""
+      />
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <img src="assets/images/profile.jpg" />
+        <ion-label>
+          <h1>Anthony Veloria</h1>
+          <p>Instructor</p>
+          <p>Sept. 1 2019 03:00 AM</p>
+        </ion-label>
+      </ion-item>
+      <ion-text color="dark">
+        <p>This is a post with image</p>
+      </ion-text>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-thumbs-up"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-text"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header> </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <img src="assets/images/profile.jpg" />
+        <ion-label>
+          <h1>Anthony Veloria</h1>
+          <p>Instructor</p>
+          <p>Sept. 1 2019 03:00 AM</p>
+        </ion-label>
+      </ion-item>
+      <ion-text color="dark">
+        <p>This is a post without image</p>
+      </ion-text>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-thumbs-up"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-text"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <img src="http://localhost:3000/static/media/class.c75ddbac.jpg" alt="" />
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <img src="assets/images/profile.jpg" />
+        <ion-label>
+          <h1>Anthony Veloria</h1>
+          <p>Instructor</p>
+          <p>Sept. 1 2019 03:00 AM</p>
+        </ion-label>
+      </ion-item>
+      <ion-text color="dark">
+        <p>Test again</p>
+      </ion-text>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-thumbs-up"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onClick()" slot="end" fill="clear">
+        <ion-icon slot="icon-only" name="ios-text"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
