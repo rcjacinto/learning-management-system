@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'classes', loadChildren: './pages/classes/classes.module#ClassesPageModule' },
   { path: 'students', loadChildren: './pages/students/students.module#StudentsPageModule' },
   { path: 'activities', loadChildren: './pages/activities/activities.module#ActivitiesPageModule' },
-  { path: 'grades', loadChildren: './pages/grades/grades.module#GradesPageModule' }
+  { path: 'grades', loadChildren: './pages/grades/grades.module#GradesPageModule' },
+  { path: 'library', loadChildren: './pages/library/library.module#LibraryPageModule' }
 ];
 
 @NgModule({
