@@ -1,18 +1,8 @@
 <app-header title="STUDENTS"></app-header>
 <ion-list>
-  <ion-searchbar
-    placeholder="Search Student"
-    (ionChange)="onSearchChange($event)"
-    [debounce]="250"
-    mode="ios"
-  >
+  <ion-searchbar placeholder="Search Student" [debounce]="250" mode="ios">
   </ion-searchbar>
-  <ion-select
-    [interfaceOptions]="customAlertOptions"
-    interface="alert"
-    placeholder="Select One"
-    mode="ios"
-  >
+  <ion-select interface="alert" placeholder="Select One" mode="ios">
     <ion-select-option value="Web Development"
       >Web Development</ion-select-option
     >
