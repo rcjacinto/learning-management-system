@@ -22,8 +22,12 @@ const routes: Routes = [
         loadChildren: '../dashboard/dashboard.module#DashboardPageModule'
       },
       {
-        path: 'library',
-        loadChildren: '../library/library.module#LibraryPageModule'
+        path: 'records',
+        loadChildren: '../records/records.module#RecordsPageModule'
+      },
+      {
+        path: 'reports',
+        loadChildren: '../reports/reports.module#ReportsPageModule'
       },
       {
         path: 'activities',
