@@ -40,6 +40,10 @@ const routes: Routes = [
       {
         path: 'grades',
         loadChildren: '../grades/grades.module#GradesPageModule'
+      },
+      {
+        path: 'library',
+        loadChildren: '../library/library.module#LibraryPageModule'
       }
     ]
   }

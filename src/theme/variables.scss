@@ -1,5 +1,5 @@
 :root {
-  --ion-font-family: 'Monda', cursive;
+  --ion-font-family: 'Monda';
 
   --ion-color-primary: #c92e29;
   --ion-color-primary-rgb: 201, 46, 41;
@@ -63,4 +63,9 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+}
+
+@font-face {
+  font-family: 'Monda';
+  src: url('../assets/fonts/Monda-Bold.ttf');
 }
