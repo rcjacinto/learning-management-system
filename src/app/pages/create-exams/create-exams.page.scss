@@ -1,0 +1,33 @@
+ion-content {
+  --background: #f1f1f1;
+}
+ion-grid {
+  background: #f1f1f1;
+  padding: 0.6rem 0.6rem 0;
+}
+
+ion-col {
+  ion-input {
+    --background: white;
+    --color: #222222;
+    --padding-bottom: 4px;
+    --padding-end: 12px;
+    --padding-start: 12px;
+    --padding-top: 4px;
+    --placeholder-opacity: 0.5;
+    font-size: 0.6rem;
+    border-radius: 5px;
+  }
+}
+
+ion-select {
+  background: white;
+  color: #222222;
+  margin: 0.5rem 0 0;
+  font-size: 0.6rem;
+  --padding-end: 1rem;
+  border-radius: 0.4rem;
+  button {
+    padding: 0 !important;
+  }
+}

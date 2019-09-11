@@ -1,9 +1,67 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>createExams</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="CREATE EXAM / QUIZ"></app-header>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-select interface="alert" placeholder="CLASS" mode="ios">
+        <ion-select-option value="Web Development"
+          >Web Development</ion-select-option
+        >
+        <ion-select-option value="Android (JAVA)" selected
+          >Android (JAVA)</ion-select-option
+        >
+        <ion-select-option value="DBMS">DBMS</ion-select-option>
+        <ion-select-option value="SOCSCI">SOCSCI</ion-select-option>
+        <ion-select-option value="NATSCI">NATSCI</ion-select-option>
+        <ion-select-option value="Basic Fundamentals"
+          >Basic Fundamentals</ion-select-option
+        >
+        <ion-select-option value="Algebra">Algebra</ion-select-option>
+        <ion-select-option value="Artificial Inteligent"
+          >Artificial Inteligent</ion-select-option
+        >
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-select interface="alert" placeholder="CLASIFICATION" mode="ios">
+        <ion-select-option value="quiz" selected>QUIZ</ion-select-option>
+        <ion-select-option value="exam">
+          EXAM
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="6">
+      <ion-select interface="alert" placeholder="TERM" mode="ios">
+        <ion-select-option value="1">PRELIM</ion-select-option>
+        <ion-select-option value="Android (JAVA)" selected
+          >MIDTERM</ion-select-option
+        >
+        <ion-select-option value="DBMS">PRE-FINALS</ion-select-option>
+        <ion-select-option value="SOCSCI">FINALS</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-input type="text" placeholder="DESCRIPTION"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12"
+      ><ion-button (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon> </ion-button
+    ></ion-col>
+  </ion-row>
+</ion-grid>
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+      <ion-card-title>Awesome Title</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Awesome content
+    </ion-card-content>
+  </ion-card>
 </ion-content>
