@@ -1,67 +1,112 @@
 <app-header title="CREATE EXAM / QUIZ"></app-header>
-<ion-grid fixed>
-  <ion-row>
-    <ion-col size="12">
-      <ion-select interface="alert" placeholder="CLASS" mode="ios">
-        <ion-select-option value="Web Development"
-          >Web Development</ion-select-option
-        >
-        <ion-select-option value="Android (JAVA)" selected
-          >Android (JAVA)</ion-select-option
-        >
-        <ion-select-option value="DBMS">DBMS</ion-select-option>
-        <ion-select-option value="SOCSCI">SOCSCI</ion-select-option>
-        <ion-select-option value="NATSCI">NATSCI</ion-select-option>
-        <ion-select-option value="Basic Fundamentals"
-          >Basic Fundamentals</ion-select-option
-        >
-        <ion-select-option value="Algebra">Algebra</ion-select-option>
-        <ion-select-option value="Artificial Inteligent"
-          >Artificial Inteligent</ion-select-option
-        >
-      </ion-select>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="6">
-      <ion-select interface="alert" placeholder="CLASIFICATION" mode="ios">
-        <ion-select-option value="quiz" selected>QUIZ</ion-select-option>
-        <ion-select-option value="exam">
-          EXAM
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-select interface="alert" placeholder="CLASS" mode="ios">
+          <ion-select-option value="Web Development"
+            >Web Development</ion-select-option
+          >
+          <ion-select-option value="Android (JAVA)" selected
+            >Android (JAVA)</ion-select-option
+          >
+          <ion-select-option value="DBMS">DBMS</ion-select-option>
+          <ion-select-option value="SOCSCI">SOCSCI</ion-select-option>
+          <ion-select-option value="NATSCI">NATSCI</ion-select-option>
+          <ion-select-option value="Basic Fundamentals"
+            >Basic Fundamentals</ion-select-option
+          >
+          <ion-select-option value="Algebra">Algebra</ion-select-option>
+          <ion-select-option value="Artificial Inteligent"
+            >Artificial Inteligent</ion-select-option
+          >
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-select interface="alert" placeholder="CLASIFICATION" mode="ios">
+          <ion-select-option value="quiz" selected>QUIZ</ion-select-option>
+          <ion-select-option value="exam">
+            EXAM
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="6">
+        <ion-select interface="alert" placeholder="TERM" mode="ios">
+          <ion-select-option value="1">PRELIM</ion-select-option>
+          <ion-select-option value="Android (JAVA)" selected
+            >MIDTERM</ion-select-option
+          >
+          <ion-select-option value="DBMS">PRE-FINALS</ion-select-option>
+          <ion-select-option value="SOCSCI">FINALS</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button mode="ios" checked value="details">
+      <ion-label>Details</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="questions">
+      <ion-label>Questions</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'details'">
+      <ion-item lines="none">
+        <ion-label position="stacked" color="dark">Title</ion-label>
+        <ion-input type="text" placeholder="" color="dark"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked" color="dark">Instruction</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked" color="dark">Time Limit</ion-label>
+        <ion-input
+          type="number"
+          placeholder=""
+          color="dark"
+          value="60"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'questions'">
+      <ion-list-header>
+        <ion-label><P>1 QUESTION (1 POINT)</P></ion-label>
+      </ion-list-header>
+      <ion-select placeholder="Select Type">
+        <ion-select-option value="Multiple Choice" checked>
+          Multiple Choice
+        </ion-select-option>
+        <ion-select-option value="Short Answer">
+          Short Answer
         </ion-select-option>
       </ion-select>
-    </ion-col>
-    <ion-col size="6">
-      <ion-select interface="alert" placeholder="TERM" mode="ios">
-        <ion-select-option value="1">PRELIM</ion-select-option>
-        <ion-select-option value="Android (JAVA)" selected
-          >MIDTERM</ion-select-option
-        >
-        <ion-select-option value="DBMS">PRE-FINALS</ion-select-option>
-        <ion-select-option value="SOCSCI">FINALS</ion-select-option>
-      </ion-select>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-input type="text" placeholder="DESCRIPTION"></ion-input>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12"
-      ><ion-button (click)="onClick()">
-        <ion-icon slot="icon-only" name="add"></ion-icon> </ion-button
-    ></ion-col>
-  </ion-row>
-</ion-grid>
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-      <ion-card-title>Awesome Title</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Awesome content
-    </ion-card-content>
-  </ion-card>
+      <ion-textarea placeholder="Question Text"></ion-textarea>
+      <div>
+        <ion-button (click)="onClick()" expand="block" fill="outline">
+          <ion-icon slot="icon-only" name="add"></ion-icon> ADD QUESTION
+        </ion-button>
+      </div>
+    </ion-list>
+  </div>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="onClick()" expand="block" fill="outline">
+          Post to Class
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="onClick()" expand="block" fill="outline">
+          Save to Library
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,13 +1,13 @@
 :host {
   ion-toolbar {
-    --background: var(--ion-color-primary);
+    --background: var(--ion-color-danger);
     color: #ffffff;
   }
 
   ion-content {
     --background: linear-gradient(
       135deg,
-      var(--ion-color-primary),
+      var(--ion-color-danger),
       rgb(99, 0, 0)
     );
   }
