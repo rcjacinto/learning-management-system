@@ -65,7 +65,7 @@
         <ion-textarea></ion-textarea>
       </ion-item>
       <ion-item lines="none">
-        <ion-label position="stacked" color="dark">Time Limit</ion-label>
+        <ion-label position="stacked" color="dark">Time Limit (min)</ion-label>
         <ion-input
           type="number"
           placeholder=""
@@ -76,17 +76,69 @@
     </ion-list>
     <ion-list *ngSwitchCase="'questions'">
       <ion-list-header>
-        <ion-label><P>1 QUESTION (1 POINT)</P></ion-label>
+        <ion-label>1 QUESTION (1 POINT)</ion-label>
       </ion-list-header>
-      <ion-select placeholder="Select Type">
-        <ion-select-option value="Multiple Choice" checked>
+    </ion-list>
+    <ion-list *ngSwitchCase="'questions'">
+      <ion-select [(ngModel)]="type">
+        <ion-select-option value="mc" checked>
           Multiple Choice
         </ion-select-option>
-        <ion-select-option value="Short Answer">
+        <ion-select-option value="sa">
           Short Answer
+        </ion-select-option>
+        <ion-select-option value="tof">
+          True or False
         </ion-select-option>
       </ion-select>
       <ion-textarea placeholder="Question Text"></ion-textarea>
+      <div [ngSwitch]="type">
+        <ion-radio-group name="options" *ngSwitchCase="'mc'">
+          <ion-item lines="none">
+            <ion-input type="text" placeholder="A"></ion-input>
+            <ion-radio slot="end" checked></ion-radio>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input type="text" placeholder="B"></ion-input>
+            <ion-radio slot="end"></ion-radio>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input type="text" placeholder="C"></ion-input>
+            <ion-radio slot="end"></ion-radio>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input type="text" placeholder="D"></ion-input>
+            <ion-radio slot="end"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+        <ion-input
+          type="text"
+          placeholder="Correct Answer"
+          *ngSwitchCase="'sa'"
+        >
+        </ion-input>
+        <ion-radio-group name="options" *ngSwitchCase="'tof'">
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              placeholder="A"
+              value="True"
+              readonly
+            ></ion-input>
+            <ion-radio slot="end" checked></ion-radio>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              placeholder="B"
+              value="False"
+              readonly
+            ></ion-input>
+            <ion-radio slot="end"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </div>
+
       <div>
         <ion-button (click)="onClick()" expand="block" fill="outline">
           <ion-icon slot="icon-only" name="add"></ion-icon> ADD QUESTION

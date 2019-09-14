@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateExamsPage implements OnInit {
   segment = 'details';
+  type = 'mc';
   constructor() {}
 
   ngOnInit() {}
 
   segmentChanged(event) {
     this.segment = event.target.value;
+  }
+
+  selectType(event) {
+    this.type = event.target.value;
   }
 }
