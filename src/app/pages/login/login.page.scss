@@ -1,0 +1,72 @@
+.main {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
+    url(../../../assets/images/empty-classroom.jpg) no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding: 8vh 3vh;
+  position: relative;
+  .description {
+    text-align: center;
+    color: #cacaca;
+    text-shadow: 2px 2px 5px black;
+    font-size: 0.8rem;
+  }
+  ion-button {
+    --color: #ffffff;
+    --border-color: #3880ff;
+    font-size: 0.6rem;
+    margin: 5px 10px;
+    text-shadow: 2px 2px 5px black;
+  }
+}
+
+.logo {
+  max-height: 10vh;
+  margin: 10px auto 25px;
+  display: block;
+}
+
+.title {
+  color: var(--ion-color-danger);
+  text-shadow: 2px 2px 5px black;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.subtitle {
+  color: var(--ion-color-light);
+  text-shadow: 2px 2px 5px black;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.btns {
+  margin: 30px 0;
+}
+
+.login-div {
+  padding: 5px;
+  margin: 20px 0 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.76);
+  ion-item {
+    --background: rgba(255, 255, 255, 0.199);
+  }
+}
+
+.register-now {
+  text-align: center;
+  a {
+    color: #3880ff !important;
+    text-shadow: 2px 2px 5px black;
+    font-size: 0.8rem;
+  }
+}
+
+form {
+  ion-button {
+    margin: 10px 0 !important;
+    --background: #3880ff !important;
+  }
+}

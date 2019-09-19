@@ -1,9 +1,71 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="main">
+    <img src="assets/images/trimex.png" class="logo" />
+    <h1 class="ion-text-center">
+      <span class="title">LMS </span> <span class="subtitle">Online</span>
+    </h1>
+    <p *ngIf="!loginIsClicked" class="description">
+      Enhancing Teaching Approaches on Selected Program in Senior High School
+      Utilizing Android Mobile Application: With Learning Management System
+    </p>
+    <form
+      *ngIf="loginIsClicked"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="login-div">
+        <ion-item>
+          <ion-icon slot="start" name="mail"></ion-icon>
+          <ion-input
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.email.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="key"></ion-icon>
+          <ion-input
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.password.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+      </div>
+      <ion-button type="submit" expand="block" class="login-btn">
+        Login
+      </ion-button>
+      <p class="register-now">
+        <a [routerLink]="['/register']" routerLinkActive="router-link-active">
+          Register now
+        </a>
+      </p>
+    </form>
+    <div class="btns" *ngIf="!loginIsClicked">
+      <ion-button (click)="onLoginClick()" expand="block" fill="outline">
+        Login
+      </ion-button>
+      <ion-button
+        [routerLink]="['/register']"
+        routerLinkActive="router-link-active"
+        expand="block"
+        fill="outline"
+      >
+        Register
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
