@@ -45,8 +45,14 @@
           </ion-label>
         </ion-item>
       </div>
-      <ion-button type="submit" expand="block" class="login-btn">
-        Login
+      <ion-button
+        type="submit"
+        expand="block"
+        class="login-btn"
+        [disabled]="loading"
+      >
+        {{ loading ? '' : 'Login' }}
+        <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
       </ion-button>
       <p class="register-now">
         <a [routerLink]="['/register']" routerLinkActive="router-link-active">
