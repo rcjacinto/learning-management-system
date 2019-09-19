@@ -1,16 +1,20 @@
 ion-content {
   --background: #f1f1f1;
 }
+
+ion-segment {
+  padding: 20px 15px 10px;
+  background: #f1f1f1;
+}
 ion-segment-button {
   --background: #ffffff;
-  --background-checked: var(--ion-color-primary);
-  --border-color: #222222;
+  --background-checked: var(--ion-color-danger);
   --border-radius: 4px;
   --color: grey;
-  --color-activated: black;
   --color-checked: #ffffff;
   --indicator-color-checked: #222222;
   --transition: background-color 15ms linear;
+  font-size: 0.6rem;
 }
 
 ion-card {
@@ -54,6 +58,11 @@ ion-grid {
   ion-row {
     padding: 0;
   }
+}
+
+ion-list {
+  background: #f1f1f1;
+  padding: 0;
 }
 
 .footer {

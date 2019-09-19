@@ -3,7 +3,7 @@ ion-content {
 }
 ion-segment-button {
   --background: #ffffff;
-  --background-checked: var(--ion-color-primary);
+  --background-checked: var(--ion-color-danger);
   --border-color: #222222;
   --border-radius: 4px;
   --color: grey;
@@ -27,7 +27,7 @@ ion-list {
 }
 
 ion-select {
-  background: var(--ion-color-primary);
+  background: var(--ion-color-danger);
   border: 1px solid black;
   color: #ffffff;
   margin: 1rem 0.8rem 0;
@@ -81,7 +81,7 @@ ion-grid {
 }
 
 ion-fab-button {
-  --border-color: var(--ion-color-primary);
+  --border-color: var(--ion-color-danger);
   --padding-bottom: 0;
   --padding-end: 0;
   --padding-start: 0;
