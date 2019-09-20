@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController, MenuController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,7 +18,9 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
-    private navController: NavController
+    private navController: NavController,
+    private toastController: ToastController,
+    private menuCtrl: MenuController
   ) {}
 
   ngOnInit() {
@@ -48,7 +50,6 @@ export class LoginPage implements OnInit {
         console.log(res);
         this.userService.getUser(res.user.uid).subscribe(user => {
           console.log(user);
-
           if (user.role === 'instructor') {
             this.navController.navigateRoot('/tabs');
           } else {
@@ -60,6 +61,16 @@ export class LoginPage implements OnInit {
       .catch(err => {
         console.log(err);
         this.loading = false;
+        this.presentToast(err.message, 'danger');
       });
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message,
+      color,
+      duration: 3000
+    });
+    toast.present();
   }
 }
