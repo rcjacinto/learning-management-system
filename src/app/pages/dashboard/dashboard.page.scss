@@ -1,21 +1,29 @@
-ion-item {
-  --padding-bottom: 0.1rem;
-  --padding-end: 0.1rem;
-  --padding-start: 0.1rem;
-  --padding-top: 0.1rem;
-  margin-bottom: 0.5rem;
-  img {
-    max-width: 6vh;
-    border-radius: 50%;
-    margin: 0 0.5rem;
-  }
-  h1 {
-    font-size: 0.8rem;
-    margin: 0.3rem;
-  }
+.anouncements {
+  ion-item {
+    --padding-bottom: 0.1rem;
+    --padding-end: 0.1rem;
+    --padding-start: 0.1rem;
+    --padding-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    img {
+      max-width: 6vh;
+      border-radius: 50%;
+      margin: 0 0.5rem;
+    }
+    h1 {
+      font-size: 0.8rem;
+      margin: 0.3rem;
+    }
 
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.classes {
   p {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -62,6 +70,22 @@ ion-card {
 
 ion-content {
   --background: #f1f1f1;
+}
+
+ion-segment {
+  padding: 20px 15px 10px;
+  background: #f1f1f1;
+}
+
+ion-segment-button {
+  --background: #ffffff;
+  --background-checked: var(--ion-color-danger);
+  --border-radius: 4px;
+  --color: grey;
+  --color-checked: #ffffff;
+  --indicator-color-checked: #222222;
+  --transition: background-color 15ms linear;
+  font-size: 0.7rem;
 }
 
 #post-btn {
