@@ -1,6 +1,5 @@
 export interface User {
   id: string;
-  student_number: string;
   name: {
     first: string;
     last: string;
@@ -9,4 +8,9 @@ export interface User {
   dob: string;
   address: string;
   role: string;
+  image: string;
+  date: {
+    created: string;
+    modified: string;
+  };
 }

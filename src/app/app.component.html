@@ -1,28 +1,39 @@
 <ion-app>
   <ion-split-pane>
     <ion-menu type="overlay">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
       <ion-content>
+        <ion-card>
+          <ion-card-header color="danger"> </ion-card-header>
+          <ion-card-content>
+            <img
+              src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/14720513_1237005996356503_7244035513575376293_n.jpg?_nc_cat=103&_nc_oc=AQmeLKm6xDeVevAcH34e5UtNzNVHDTOsDaNv1BnZ6Wt_uvYrk558J_7XDYOvswT2Akk&_nc_ht=scontent.fmnl13-1.fna&oh=0f20da059d4cdd4d75199bad80d41422&oe=5DF25CB8"
+              alt=""
+            />
+            <ion-label text-center>
+              Anthony Veloria
+              <p>Instructor</p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{ p.title }}
-              </ion-label>
+          <ion-card no-margin>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
+                <ion-label>
+                  {{ p.title }}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-card>
+          <ion-card no-margin class="ion-margin-top">
+            <ion-item button (click)="logOut()">
+              <ion-icon slot="start" name="log-out" color="light"></ion-icon>
+              <ion-label>Logout</ion-label>
             </ion-item>
-          </ion-menu-toggle>
+          </ion-card>
         </ion-list>
       </ion-content>
-      <ion-footer>
-        <ion-button (click)="logOut()" expand="full" color="dark">
-          <ion-icon slot="icon-only" name="log-out"></ion-icon>
-        </ion-button>
-      </ion-footer>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

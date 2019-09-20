@@ -13,9 +13,19 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Dashboard',
-      url: '/tabs/dashboard',
-      icon: 'school'
+      title: 'Profile',
+      url: '/profile',
+      icon: 'ios-contact'
+    },
+    {
+      title: 'Messages',
+      url: '/messages',
+      icon: 'chatboxes'
+    },
+    {
+      title: 'Settings',
+      url: '/settings',
+      icon: 'settings'
     }
   ];
 
