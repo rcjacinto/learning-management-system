@@ -16,13 +16,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MetaReducer, StoreModule } from '@ngrx/store';
 import { storageSyncReducer, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AddClassComponent } from './components/add-class/add-class.component';
+import { FormsModule } from '@angular/forms';
 
 const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, AddClassComponent],
+  entryComponents: [AddClassComponent],
   imports: [
+    FormsModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
