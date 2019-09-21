@@ -13,6 +13,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MetaReducer, StoreModule } from '@ngrx/store';
+import { storageSyncReducer, reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +28,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     StatusBar,

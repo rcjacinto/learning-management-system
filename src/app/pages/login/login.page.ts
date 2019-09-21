@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavController, ToastController, MenuController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { Store } from '@ngrx/store';
+import { RootState } from 'src/app/store';
+import { SetUser } from 'src/app/store/user/user.action';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,7 @@ export class LoginPage implements OnInit {
     private userService: UserService,
     private navController: NavController,
     private toastController: ToastController,
-    private menuCtrl: MenuController
+    private store: Store<RootState>
   ) {}
 
   ngOnInit() {
@@ -50,7 +53,9 @@ export class LoginPage implements OnInit {
         console.log(res);
         this.userService.getUser(res.user.uid).subscribe(user => {
           console.log(user);
+          user.id = res.user.uid;
           if (user.role === 'instructor') {
+            this.store.dispatch(new SetUser(user));
             this.navController.navigateRoot('/tabs');
           } else {
             alert('not yet');
