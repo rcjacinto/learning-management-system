@@ -6,6 +6,9 @@ import {
 } from '@ionic/angular';
 import { ClassService } from 'src/app/services/class.service';
 import { Class } from 'src/app/models/class.model';
+import { User } from 'src/app/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { RootState, selectUser } from 'src/app/store';
 
 @Component({
   selector: 'app-add-class',
@@ -13,6 +16,8 @@ import { Class } from 'src/app/models/class.model';
   styleUrls: ['./add-class.component.scss']
 })
 export class AddClassComponent implements OnInit {
+  userData$ = this.store.pipe(select(selectUser));
+  user: User;
   classname = '';
   description = '';
   color = 'red';
@@ -21,8 +26,13 @@ export class AddClassComponent implements OnInit {
     public pickerController: PickerController,
     public modalController: ModalController,
     public toastController: ToastController,
-    public classService: ClassService
-  ) {}
+    public classService: ClassService,
+    public store: Store<RootState>
+  ) {
+    this.userData$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   ngOnInit() {}
 
@@ -32,18 +42,25 @@ export class AddClassComponent implements OnInit {
       return;
     }
 
+    const code = this.randomCode();
+
     const newClass: Class = {
       name: this.classname,
       description: this.description,
       color: this.color,
       date: {
-        created: new Date().toString(),
-        modified: new Date().toString()
+        created: new Date(),
+        modified: new Date()
+      },
+      code,
+      instructor: {
+        name: `${this.user.name.first} ${this.user.name.last}`,
+        id: this.user.id
       }
     };
 
     this.classService.addClass(newClass);
-    this.presentToast('New Class Added!', 'success');
+    this.presentToast('Classcode: ' + code, 'success');
     this.classname = '';
     this.description = '';
     this.color = 'red';
@@ -111,9 +128,20 @@ export class AddClassComponent implements OnInit {
 
   async presentToast(message, color) {
     const toast = await this.toastController.create({
-      message,
+      animated: true,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
+      ],
       color,
-      duration: 3000
+      cssClass: 'toast-success',
+      header: 'New Class Added! ',
+      keyboardClose: true,
+      message,
+      mode: 'ios',
+      position: 'middle'
     });
     toast.present();
   }

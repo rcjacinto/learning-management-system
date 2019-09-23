@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddClassComponent } from 'src/app/components/add-class/add-class.component';
+import { Class } from 'src/app/models/class.model';
+import { ClassService } from 'src/app/services/class.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +12,15 @@ import { AddClassComponent } from 'src/app/components/add-class/add-class.compon
 })
 export class DashboardPage implements OnInit {
   segment = 'anouncements';
-  constructor(public modalController: ModalController) {}
+  classlist: Class[] = [];
+  constructor(
+    public modalController: ModalController,
+    public classService: ClassService
+  ) {
+    classService.getclass().subscribe(list => {
+      this.classlist = list;
+    });
+  }
 
   ngOnInit() {}
 

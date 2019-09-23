@@ -22,6 +22,10 @@
 }
 
 .classes {
+  h1 {
+    font-size: 0.7rem;
+  }
+
   p {
     font-size: 0.6rem;
   }
@@ -88,8 +92,20 @@ ion-segment-button {
   font-size: 0.7rem;
 }
 
+ion-list {
+  min-height: 50vh;
+}
+
 #post-btn {
   --color-activated: #ffffff;
   --color-focused: #ffffff;
   color: black;
+}
+
+.empty {
+  padding: 50px;
+  color: #222222;
+  h1 {
+    font-size: 1rem;
+  }
 }

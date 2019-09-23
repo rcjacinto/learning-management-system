@@ -111,42 +111,28 @@
           inputmode="text"
           mode="ios"
         ></ion-searchbar>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="blue"></ion-icon>
+        <ion-item button *ngFor="let list of classlist">
+          <ion-icon
+            name="bookmark"
+            slot="start"
+            [color]="list.color"
+          ></ion-icon>
           <ion-label>
-            <p>Class 1</p>
+            <h1>{{ list.name }}</h1>
+            <!-- <p>{{ list.date.created | date: 'd MMM yyyy' }}</p> -->
           </ion-label>
+          <div>
+            <p>{{ list.code }}</p>
+          </div>
         </ion-item>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="orange"></ion-icon>
-          <ion-label>
-            <p>Class 2</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="green"></ion-icon>
-          <ion-label>
-            <p>Class 3</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="red"></ion-icon>
-          <ion-label>
-            <p>Class 4</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="yellow"></ion-icon>
-          <ion-label>
-            <p>Class 5</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button>
-          <ion-icon name="bookmark" slot="start" color="grey"></ion-icon>
-          <ion-label>
-            <p>Class 6</p>
-          </ion-label>
-        </ion-item>
+
+        <div class="ion-text-center empty" *ngIf="classlist.length == 0">
+          <h1>No Classes Created</h1>
+          <p>
+            Create digital classroom where you and your students can work
+            together
+          </p>
+        </div>
       </ion-list>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="light" (click)="presentModal()">
