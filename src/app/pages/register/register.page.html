@@ -1,9 +1,129 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  Back muna, wait ka lang hehehe
+  <div class="main">
+    <img src="assets/images/trimex.png" class="logo" />
+    <h1 class="ion-text-center">
+      <span class="title">LMS </span> <span class="subtitle">Online</span>
+    </h1>
+    <p class="ion-text-center description">
+      REGISTER
+    </p>
+    <div *ngIf="!registering">
+      <div class="btns">
+        <ion-button
+          expand="block"
+          color="orange"
+          (click)="selectType('instructor')"
+        >
+          I am an Instructor
+        </ion-button>
+        <ion-button
+          expand="block"
+          color="yellow"
+          (click)="selectType('student')"
+        >
+          I am a Student
+        </ion-button>
+      </div>
+
+      <p class="ion-text-center description">OR</p>
+      <ion-button
+        [routerLink]="['/login']"
+        routerLinkActive="router-link-active"
+        expand="block"
+        fill="outline"
+      >
+        Login
+      </ion-button>
+    </div>
+
+    <form *ngIf="registering" [formGroup]="registerForm">
+      <div class="register-div">
+        <ion-item *ngIf="userType == 'student'">
+          <ion-icon slot="start" name="ios-code-working"></ion-icon>
+          <ion-input
+            placeholder="Class code"
+            type="text"
+            formControlName="classcode"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.classcode.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="ios-contact"></ion-icon>
+          <ion-input
+            placeholder="Nickname"
+            type="text"
+            formControlName="name"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.name.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="mail"></ion-icon>
+          <ion-input
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.email.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="key"></ion-icon>
+          <ion-input
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.password.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="key"></ion-icon>
+          <ion-input
+            placeholder="Confirm Password"
+            type="password"
+            formControlName="password2"
+          ></ion-input>
+          <ion-label
+            class="error-label"
+            color="danger"
+            *ngIf="submitted && f.password2.errors"
+          >
+            <ion-icon name="alert"></ion-icon>
+          </ion-label>
+        </ion-item>
+      </div>
+      <ion-button (click)="onSubmit()" expand="block" [disabled]="loading">
+        {{ loading ? '' : 'Submit' }}
+        <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
+      </ion-button>
+      <ion-button expand="block" color="dark" (click)="cancelRegistering()">
+        Back
+      </ion-button>
+    </form>
+  </div>
 </ion-content>
