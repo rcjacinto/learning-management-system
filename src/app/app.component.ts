@@ -52,7 +52,6 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.userData$.subscribe(res => {
         console.log(res);
-
         this.user = res;
       });
       this.splashScreen.hide();
