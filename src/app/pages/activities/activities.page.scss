@@ -72,3 +72,16 @@ ion-list {
 .class-image {
   margin: 1vh 0;
 }
+
+ion-select {
+  background: var(--ion-color-danger);
+  border: 1px solid black;
+  color: #ffffff;
+  margin: 0 0.8rem;
+  font-size: 0.8rem;
+  --padding-end: 1rem;
+  border-radius: 0.4rem;
+  button {
+    padding: 0 !important;
+  }
+}

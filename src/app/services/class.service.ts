@@ -18,15 +18,29 @@ export class ClassService {
 
   private classes: Observable<Class[]>;
 
-  constructor(db: AngularFirestore, public store: Store<RootState>) {
-    this.userData$.subscribe(user => {
-      this.classCollection = db.collection<Class>('class', ref =>
-        ref
-          .where('instructor.id', '==', user.id)
-          .orderBy('date.created', 'desc')
-      );
+  constructor(public db: AngularFirestore, public store: Store<RootState>) {
+    this.classCollection = db.collection<Class>('class');
 
-      this.classes = this.classCollection.snapshotChanges().pipe(
+    this.classes = this.classCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getAllclasses(user_id) {
+    return this.db
+      .collection<Class>('class', ref =>
+        ref
+          .where('instructor.id', '==', user_id)
+          .orderBy('date.created', 'desc')
+      )
+      .snapshotChanges()
+      .pipe(
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
@@ -35,19 +49,53 @@ export class ClassService {
           });
         })
       );
-    });
-  }
-
-  getclass() {
-    return this.classes;
   }
 
   getClass(id) {
     return this.classCollection.doc<Class>(id).valueChanges();
   }
 
-  updateClass(classes: Class, id: string) {
-    return this.classCollection.doc(id).update(classes);
+  getClassByCode(code: string) {
+    return this.db
+      .collection<Class>('class', ref =>
+        ref
+          .where('code', '==', code)
+          .orderBy('date.created', 'desc')
+          .limit(1)
+      )
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+  }
+
+  getClassByStudentId(id) {
+    return this.db
+      .collection<Class>('class', ref =>
+        ref
+          .where('members', 'array-contains', id)
+          .orderBy('date.created', 'desc')
+      )
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+  }
+
+  updateClass(classes: Class) {
+    return this.classCollection.doc(classes.id).update(classes);
   }
 
   addClass(classes: Class) {

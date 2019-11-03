@@ -6,7 +6,8 @@
     --padding-top: 0.1rem;
     margin-bottom: 0.5rem;
     img {
-      max-width: 6vh;
+      max-width: 50px;
+      max-height: 50px;
       border-radius: 50%;
       margin: 0 0.5rem;
     }
@@ -97,7 +98,7 @@ ion-list {
 }
 
 #post-btn {
-  --color-activated: #ffffff;
+  --color-activated: #857c7c;
   --color-focused: #ffffff;
   color: black;
 }
@@ -108,4 +109,23 @@ ion-list {
   h1 {
     font-size: 1rem;
   }
+}
+
+ion-select {
+  background: var(--ion-color-danger);
+  border: 1px solid black;
+  color: #ffffff;
+  margin: 0 0.8rem;
+  font-size: 0.8rem;
+  --padding-end: 1rem;
+  border-radius: 0.4rem;
+  button {
+    padding: 0 !important;
+  }
+}
+
+.post-card {
+  padding: 15px;
+  border: 0.5px solid rgb(204, 202, 202);
+  font-size: 0.8rem;
 }

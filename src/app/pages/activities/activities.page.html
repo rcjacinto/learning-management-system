@@ -1,220 +1,138 @@
 <app-header title="ACTIVITIES"></app-header>
-<ion-segment mode="ios">
-  <ion-segment-button checked mode="ios">
-    <ion-label>ALL</ion-label>
-  </ion-segment-button>
-  <ion-segment-button mode="ios">
+<ion-segment interface="alert" mode="ios" [(ngModel)]="type">
+  <ion-segment-button mode="ios" value="quiz">
     <ion-label>QUIZ</ion-label>
   </ion-segment-button>
-  <ion-segment-button mode="ios">
+  <ion-segment-button mode="ios" value="exams">
     <ion-label>EXAMS</ion-label>
   </ion-segment-button>
 </ion-segment>
 <ion-content>
   <ion-list>
-    <ion-card button>
-      <ion-card-header>
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="4"
-              ><img
-                src="https://cdn-images-1.medium.com/max/800/0*ngXgBNNdx6iiWP8q.png"
-                alt=""
-                class="class-image"
-            /></ion-col>
-            <ion-col size="8">
-              <ion-text color="dark">
-                <h4 class="text-header">Basic Programming</h4>
-              </ion-text>
-              <ion-text color="dark">
-                <p class="text-wrap">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Nobis optio tempora rerum.
-                </p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
-                  08 Aug 2019
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="time"></ion-icon>
-                  60 mins
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">Turned-in: 10</p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
+    <div class="classes-select">
+      <ion-select
+        class="classes-options"
+        [(ngModel)]="selectedClass"
+        (ionChange)="setSelectedClass()"
+      >
+        <ion-select-option *ngFor="let list of classlist" [value]="list">
+          {{ list.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <div [ngSwitch]="type">
+      <div *ngSwitchCase="'quiz'">
+        <ion-card class="ion-text-center" padding *ngIf="quizlist.length == 0">
+          No Quiz in this Class
+        </ion-card>
+        <ion-card button *ngFor="let quiz of quizlist">
+          <ion-card-header>
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="4"
+                  ><img
+                    src="https://cdn-images-1.medium.com/max/800/0*ngXgBNNdx6iiWP8q.png"
+                    alt=""
+                    class="class-image"
+                /></ion-col>
+                <ion-col size="8">
+                  <ion-text color="dark">
+                    <h4 class="text-header">{{ quiz.title }}</h4>
+                  </ion-text>
+                  <ion-text color="dark">
+                    <p class="text-wrap">
+                      {{ quiz.description }}
+                    </p>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">
+                      <ion-icon slot="icon-only" name="calendar"></ion-icon>
 
-    <ion-card button>
-      <ion-card-header>
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="4"
-              ><img
-                src="https://www.ravepubs.com/wp-content/uploads/2015/10/programmers-1015.jpg"
-                alt=""
-                class="class-image"
-            /></ion-col>
-            <ion-col size="8">
-              <ion-text color="dark">
-                <h4 class="text-header">Basic Programming</h4>
-              </ion-text>
-              <ion-text color="dark">
-                <p class="text-wrap">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Nobis optio tempora rerum.
-                </p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
-                  08 Aug 2019
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="time"></ion-icon>
-                  60 mins
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">Turned-in: 10</p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
+                      {{
+                        convertToDate(quiz.deadline.seconds)
+                          | date: 'dd MMM yyyy'
+                      }}
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">
+                      <ion-icon slot="icon-only" name="time"></ion-icon>
+                      {{ quiz.time_limit }} mins
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">Turned-in: {{ quiz.submits.length }}</p>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+        </ion-card>
+      </div>
+      <div *ngSwitchCase="'exams'">
+        <ion-card class="ion-text-center" padding *ngIf="examslist.length == 0">
+          No Exams in this Class
+        </ion-card>
+        <ion-card button *ngFor="let exams of examslist">
+          <ion-card-header>
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="4"
+                  ><img
+                    src="https://cdn-images-1.medium.com/max/800/0*ngXgBNNdx6iiWP8q.png"
+                    alt=""
+                    class="class-image"
+                /></ion-col>
+                <ion-col size="8">
+                  <ion-text color="dark">
+                    <h4 class="text-header">{{ exams.title }}</h4>
+                  </ion-text>
+                  <ion-text color="dark">
+                    <p class="text-wrap">
+                      {{ exams.description }}
+                    </p>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">
+                      <ion-icon slot="icon-only" name="calendar"></ion-icon>
 
-    <ion-card button>
-      <ion-card-header>
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="4"
-              ><img
-                src="https://hackr.io/blog/wp-content/uploads/2018/10/what-is-a-programming-language@2x-1280x800.png"
-                alt=""
-                class="class-image"
-            /></ion-col>
-            <ion-col size="8">
-              <ion-text color="dark">
-                <h4 class="text-header">Basic Programming</h4>
-              </ion-text>
-              <ion-text color="dark">
-                <p class="text-wrap">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Nobis optio tempora rerum.
-                </p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
-                  08 Aug 2019
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="time"></ion-icon>
-                  60 mins
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">Turned-in: 10</p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card button>
-      <ion-card-header>
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="4"
-              ><img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdXhn7amla_RTpLm_BOkbCpmLC3Y8lriCA0hwV4M4LVE0ivVrD"
-                alt=""
-                class="class-image"
-            /></ion-col>
-            <ion-col size="8">
-              <ion-text color="dark">
-                <h4 class="text-header">Basic Programming</h4>
-              </ion-text>
-              <ion-text color="dark">
-                <p class="text-wrap">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Nobis optio tempora rerum.
-                </p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
-                  08 Aug 2019
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">
-                  <ion-icon slot="icon-only" name="time"></ion-icon>
-                  60 mins
-                </p>
-              </ion-text>
-            </ion-col>
-            <ion-col size="4">
-              <ion-text>
-                <p class="footer">Turned-in: 10</p>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
+                      {{
+                        convertToDate(exams.deadline.seconds)
+                          | date: 'dd MMM yyyy'
+                      }}
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">
+                      <ion-icon slot="icon-only" name="time"></ion-icon>
+                      {{ exams.time_limit }} mins
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-text>
+                    <p class="footer">Turned-in: {{ exams.submits.length }}</p>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </div>
   </ion-list>
-
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button
-      [routerLink]="['/create-exams']"
-      routerLinkActive="router-link-active"
-      color="light"
-      ><ion-icon name="add"></ion-icon
-    ></ion-fab-button>
-  </ion-fab> -->
 </ion-content>

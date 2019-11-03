@@ -1,5 +1,4 @@
 export interface User {
-  _id?: string;
   id: string;
   name: {
     first: string;
@@ -7,14 +6,15 @@ export interface User {
     mi: string;
   };
   gender: string;
-  dob: string;
+  dob: any;
   address: string;
   mobile: number;
   email: string;
   image: string;
   role: string;
   date: {
-    created: string;
-    modified: string;
+    created: Date;
+    modified: Date;
   };
+  status: number;
 }

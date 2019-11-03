@@ -1,4 +1,7 @@
+import { Student } from './student.model';
+
 export interface Class {
+  id?: string;
   name: string;
   description: string;
   color: string;
@@ -11,4 +14,5 @@ export interface Class {
     id: string;
     name: string;
   };
+  members: string[];
 }

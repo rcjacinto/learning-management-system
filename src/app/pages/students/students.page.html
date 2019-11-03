@@ -1,7 +1,5 @@
 <app-header title="STUDENTS"></app-header>
 <ion-list>
-  <ion-searchbar placeholder="Search Student" [debounce]="250" mode="ios">
-  </ion-searchbar>
   <ion-select interface="alert" placeholder="Select One" mode="ios">
     <ion-select-option value="Web Development"
       >Web Development</ion-select-option
@@ -20,6 +18,8 @@
       >Artificial Inteligent</ion-select-option
     >
   </ion-select>
+  <ion-searchbar placeholder="Search Student" [debounce]="250" mode="ios">
+  </ion-searchbar>
 </ion-list>
 <ion-content>
   <ion-list no-padding>

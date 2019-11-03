@@ -45,6 +45,7 @@ export class AddClassComponent implements OnInit {
     const code = this.randomCode();
 
     const newClass: Class = {
+      members: [],
       name: this.classname,
       description: this.description,
       color: this.color,

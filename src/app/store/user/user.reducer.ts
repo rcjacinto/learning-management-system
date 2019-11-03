@@ -17,12 +17,13 @@ export const initialState: User = {
   mobile: 0,
   dob: '',
   date: {
-    created: '',
-    modified: ''
+    created: new Date(),
+    modified: new Date()
   },
   image: '',
   gender: '',
-  address: ''
+  address: '',
+  status: 0
 };
 
 export function reducer(state = initialState, action: UserActions): User {

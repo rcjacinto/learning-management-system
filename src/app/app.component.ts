@@ -98,7 +98,7 @@ export class AppComponent {
               address: ''
             };
             this.autService.doLogout().then(() => {
-              this.store.dispatch(new SetUser(empty));
+              this.store.dispatch(new SetUser(null));
               this.menuCotroller.close();
             });
           }
