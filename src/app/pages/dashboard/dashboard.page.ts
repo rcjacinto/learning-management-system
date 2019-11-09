@@ -41,8 +41,8 @@ export class DashboardPage implements OnInit {
           console.log(this.selectedClass);
           this.postService
             .getPostsByClass(this.selectedClass.id)
-            .subscribe(async () => {
-              this.postlist = await this.getPosts(this.selectedClass.id);
+            .subscribe(posts => {
+              this.postlist = posts;
             });
         }
       });
@@ -101,12 +101,13 @@ export class DashboardPage implements OnInit {
 
     this.postService
       .addPost(newPost)
-      .then(res => {
+      .then(async res => {
         newPost.id = res.id;
         this.postService.updatePost(newPost);
         this.alertToast('Posted!', 'success');
         this.loading = false;
         this.clearMessage();
+        this.postlist = await this.getPosts(this.selectedClass.id);
       })
       .catch(err => {
         this.alertToast(err, 'danger');

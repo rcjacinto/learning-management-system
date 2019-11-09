@@ -1,178 +1,38 @@
 <app-header title="STUDENTS"></app-header>
-<ion-list>
-  <ion-select interface="alert" placeholder="Select One" mode="ios">
-    <ion-select-option value="Web Development"
-      >Web Development</ion-select-option
-    >
-    <ion-select-option value="Android (JAVA)" selected
-      >Android (JAVA)</ion-select-option
-    >
-    <ion-select-option value="DBMS">DBMS</ion-select-option>
-    <ion-select-option value="SOCSCI">SOCSCI</ion-select-option>
-    <ion-select-option value="NATSCI">NATSCI</ion-select-option>
-    <ion-select-option value="Basic Fundamentals"
-      >Basic Fundamentals</ion-select-option
-    >
-    <ion-select-option value="Algebra">Algebra</ion-select-option>
-    <ion-select-option value="Artificial Inteligent"
-      >Artificial Inteligent</ion-select-option
-    >
+<ion-list padding-top>
+  <ion-select
+    class="classes-options"
+    [(ngModel)]="selectedClass"
+    (ionChange)="setSelectedClass()"
+  >
+    <ion-select-option *ngFor="let list of classlist" [value]="list">
+      {{ list.name }}
+    </ion-select-option>
   </ion-select>
   <ion-searchbar placeholder="Search Student" [debounce]="250" mode="ios">
   </ion-searchbar>
 </ion-list>
 <ion-content>
+  <ion-card class="ion-text-center" *ngIf="members.length == 0">
+    <div class="ion-padding">
+      No Member in this Class yet
+    </div>
+  </ion-card>
   <ion-list no-padding>
-    <ion-card button>
+    <ion-card button *ngFor="let member of members">
       <ion-item>
         <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-1/c0.160.960.960a/p960x960/69388624_2666397110061038_1448674829510115328_o.jpg?_nc_cat=111&_nc_oc=AQkar_CvEgIa4GaPmlRzLa9zmQ14kL6v08C9W1cub3QT1anr0_if8Xd3Vt9D9IRy9Fg&_nc_ht=scontent.fmnl13-1.fna&oh=a4100d981c97587b58b91da15cc41936&oe=5E12FC44"
-          />
+          <img [src]="member.image" />
         </ion-avatar>
         <ion-label>
           <ion-text color="dark">
-            <h4 class="text-header">Hiro Cruz</h4>
+            <h4 class="text-header">
+              {{ member.name.first }} {{ member.name.last }}
+            </h4>
           </ion-text>
           <ion-text color="dark">
             <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/43509272_2253508128051252_903560870246744064_n.jpg?_nc_cat=111&_nc_oc=AQkjSgVfHFgTiNsWn2sMDMnZkv79v28Y-_beEQKUz65GqKj8PlkRNHNBkgGnCuVDpFA&_nc_ht=scontent.fmnl13-1.fna&oh=1e082f6361b744279b320165b1314038&oe=5E059D6F"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Shaina Masinahon</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/52911800_2519939084689390_3495125479315210240_n.jpg?_nc_cat=102&_nc_oc=AQkw0svdtaSaX8q6f6jPgSjGTUvvprf10zEYLiur7Ewe25IxVlL0Of5TyivfwlXObVw&_nc_ht=scontent.fmnl13-1.fna&oh=089590732f40580bd44cb9b4a8b44554&oe=5E1234A0"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Jeramir Catalon</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/68433210_2190429091083408_5573431094100885504_n.jpg?_nc_cat=101&_nc_oc=AQlexpCY4_iBF8z6d4fHo8sc4q1-uQADPSJD3NTfXPJ4_rQekeFImRIovBbLBwZnDpE&_nc_ht=scontent.fmnl13-1.fna&oh=0781b3238bf983892a5b52c6dfdc8104&oe=5DCC1D06"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Benjamin Rivera</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-  </ion-list>
-
-  <ion-list no-padding>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-1/c0.160.960.960a/p960x960/69388624_2666397110061038_1448674829510115328_o.jpg?_nc_cat=111&_nc_oc=AQkar_CvEgIa4GaPmlRzLa9zmQ14kL6v08C9W1cub3QT1anr0_if8Xd3Vt9D9IRy9Fg&_nc_ht=scontent.fmnl13-1.fna&oh=a4100d981c97587b58b91da15cc41936&oe=5E12FC44"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Hiro Cruz</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/43509272_2253508128051252_903560870246744064_n.jpg?_nc_cat=111&_nc_oc=AQkjSgVfHFgTiNsWn2sMDMnZkv79v28Y-_beEQKUz65GqKj8PlkRNHNBkgGnCuVDpFA&_nc_ht=scontent.fmnl13-1.fna&oh=1e082f6361b744279b320165b1314038&oe=5E059D6F"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Shaina Masinahon</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/52911800_2519939084689390_3495125479315210240_n.jpg?_nc_cat=102&_nc_oc=AQkw0svdtaSaX8q6f6jPgSjGTUvvprf10zEYLiur7Ewe25IxVlL0Of5TyivfwlXObVw&_nc_ht=scontent.fmnl13-1.fna&oh=089590732f40580bd44cb9b4a8b44554&oe=5E1234A0"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Jeramir Catalon</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
-            </p>
-          </ion-text>
-        </ion-label>
-      </ion-item>
-    </ion-card>
-    <ion-card button>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img
-            src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.0-9/68433210_2190429091083408_5573431094100885504_n.jpg?_nc_cat=101&_nc_oc=AQlexpCY4_iBF8z6d4fHo8sc4q1-uQADPSJD3NTfXPJ4_rQekeFImRIovBbLBwZnDpE&_nc_ht=scontent.fmnl13-1.fna&oh=0781b3238bf983892a5b52c6dfdc8104&oe=5DCC1D06"
-          />
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="dark">
-            <h4 class="text-header">Benjamin Rivera</h4>
-          </ion-text>
-          <ion-text color="dark">
-            <p class="text-wrap">
-              16-A0029 | BSIT
+              {{ member.student_number }} | {{ member.course }}
             </p>
           </ion-text>
         </ion-label>
