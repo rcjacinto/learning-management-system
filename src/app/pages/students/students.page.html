@@ -9,7 +9,12 @@
       {{ list.name }}
     </ion-select-option>
   </ion-select>
-  <ion-searchbar placeholder="Search Student" [debounce]="250" mode="ios">
+  <ion-searchbar
+    placeholder="Search Student"
+    [debounce]="250"
+    mode="ios"
+    [(ngModel)]="search"
+  >
   </ion-searchbar>
 </ion-list>
 <ion-content>
@@ -21,7 +26,7 @@
   <ion-list no-padding>
     <ion-card
       button
-      *ngFor="let member of members"
+      *ngFor="let member of members | filter: search"
       (click)="viewProfile(member)"
     >
       <ion-item>

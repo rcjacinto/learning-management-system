@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { GradesPage } from './grades.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ComponentsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    Ng2SearchPipeModule
   ],
   declarations: [GradesPage]
 })

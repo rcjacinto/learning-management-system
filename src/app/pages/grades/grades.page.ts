@@ -51,7 +51,9 @@ export class GradesPage implements OnInit {
         if (this.classlist[0]) {
           this.selectedClass = this.classlist[0];
           console.log(this.selectedClass);
-          this.getAllStudentGrades(this.selectedTerm);
+          setTimeout(() => {
+            this.getAllStudentGrades(this.selectedTerm);
+          }, 1000);
         }
       });
     });

@@ -79,11 +79,11 @@
           No Student in this class
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let grade of grades">
+      <ion-row *ngFor="let grade of grades | filter: search">
         <ion-col size="3">
           <ion-text>
-            <p class="text-wrap">
-              {{ grade.student.name.first.toLowerCase() }}.
+            <p class="text-wrap ion-text-capitalize">
+              {{ grade.student.name.first.toLowerCase() }}
               {{ grade.student.name.last.toLowerCase() }}
             </p>
           </ion-text>
@@ -162,11 +162,11 @@
           No Student in this class
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let grade of grades">
+      <ion-row *ngFor="let grade of grades | filter: search">
         <ion-col size="2">
           <ion-text>
             <p class="text-wrap ion-text-capitalize">
-              {{ grade.student.name.first.charAt(0) }}.
+              {{ grade.student.name.first.toLowerCase() }}
               {{ grade.student.name.last.toLowerCase() }}
             </p>
           </ion-text>

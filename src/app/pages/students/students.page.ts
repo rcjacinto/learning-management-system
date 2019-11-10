@@ -18,6 +18,7 @@ export class StudentsPage implements OnInit {
   classlist: Class[] = [];
   selectedClass: Class;
   members = [];
+  search = '';
 
   constructor(
     private store: Store<RootState>,
