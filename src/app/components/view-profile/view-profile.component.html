@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+    <ion-button (click)="close()" slot="end" fill="clear" color="dark">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header color="danger">
+      <div class="pl-20">
+        <div class="profile-img">
+          <img [src]="user.image" alt="" />
+        </div>
+
+        <ion-card-title>
+          <span class="text-light">
+            {{ user.name.first }} {{ user.name.last }}
+          </span>
+        </ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="pl-20">
+        {{ user.email }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list padding>
+    <ion-item>
+      <ion-icon name="school" slot="start"></ion-icon>
+      <ion-label>{{ user.course != '' ? user.course : 'No school' }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="compass" slot="start"></ion-icon>
+      <ion-label>{{
+        user.address != '' ? user.address : 'No Adress'
+      }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-label>{{ user.mobile }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

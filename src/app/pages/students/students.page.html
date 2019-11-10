@@ -19,7 +19,11 @@
     </div>
   </ion-card>
   <ion-list no-padding>
-    <ion-card button *ngFor="let member of members">
+    <ion-card
+      button
+      *ngFor="let member of members"
+      (click)="viewProfile(member)"
+    >
       <ion-item>
         <ion-avatar slot="start">
           <img [src]="member.image" />

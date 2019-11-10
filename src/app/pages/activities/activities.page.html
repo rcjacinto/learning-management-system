@@ -25,7 +25,11 @@
         <ion-card class="ion-text-center" padding *ngIf="quizlist.length == 0">
           No Quiz in this Class
         </ion-card>
-        <ion-card button *ngFor="let quiz of quizlist">
+        <ion-card
+          button
+          *ngFor="let quiz of quizlist"
+          (click)="viewActivity(quiz)"
+        >
           <ion-card-header>
             <ion-grid fixed>
               <ion-row>
@@ -41,7 +45,7 @@
                   </ion-text>
                   <ion-text color="dark">
                     <p class="text-wrap">
-                      {{ quiz.description }}
+                      {{ quiz.instruction }}
                     </p>
                   </ion-text>
                 </ion-col>
@@ -81,7 +85,11 @@
         <ion-card class="ion-text-center" padding *ngIf="examslist.length == 0">
           No Exams in this Class
         </ion-card>
-        <ion-card button *ngFor="let exams of examslist">
+        <ion-card
+          button
+          *ngFor="let exams of examslist"
+          (click)="viewActivity(exams)"
+        >
           <ion-card-header>
             <ion-grid fixed>
               <ion-row>
@@ -97,7 +105,7 @@
                   </ion-text>
                   <ion-text color="dark">
                     <p class="text-wrap">
-                      {{ exams.description }}
+                      {{ exams.instruction }}
                     </p>
                   </ion-text>
                 </ion-col>

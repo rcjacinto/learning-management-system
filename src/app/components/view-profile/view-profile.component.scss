@@ -1,0 +1,21 @@
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  overflow: hidden;
+}
+
+.pl-20 {
+  padding-left: 100px;
+}
+
+.text-light {
+  color: white !important;
+}
+
+ion-card-content {
+  min-height: 50px;
+}

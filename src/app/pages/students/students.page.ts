@@ -4,6 +4,8 @@ import { RootState, selectUser } from 'src/app/store';
 import { Class } from 'src/app/models/class.model';
 import { ClassService } from 'src/app/services/class.service';
 import { UserService } from 'src/app/services/user.service';
+import { ModalController } from '@ionic/angular';
+import { ViewProfileComponent } from 'src/app/components/view-profile/view-profile.component';
 
 @Component({
   selector: 'app-students',
@@ -20,22 +22,9 @@ export class StudentsPage implements OnInit {
   constructor(
     private store: Store<RootState>,
     private classService: ClassService,
-    private userService: UserService
-  ) {
-    this.userData$.subscribe(user => {
-      this.user = user;
-      classService.getAllclasses(user.id).subscribe(async list => {
-        this.classlist = list;
-        if (this.classlist[0]) {
-          this.selectedClass = this.classlist[0];
-          console.log(this.selectedClass);
-          if (this.selectedClass.members) {
-            this.setSelectedClass();
-          }
-        }
-      });
-    });
-  }
+    private userService: UserService,
+    public modalController: ModalController
+  ) {}
 
   async setSelectedClass() {
     console.log(this.selectedClass.members);
@@ -50,4 +39,29 @@ export class StudentsPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.userData$.subscribe(user => {
+      this.user = user;
+      this.classService.getAllclasses(user.id).subscribe(async list => {
+        this.classlist = list;
+        if (this.classlist[0]) {
+          this.selectedClass = this.classlist[0];
+          console.log(this.selectedClass);
+          if (this.selectedClass.members) {
+            this.setSelectedClass();
+          }
+        }
+      });
+    });
+  }
+
+  async viewProfile(user) {
+    const modal = await this.modalController.create({
+      component: ViewProfileComponent,
+      componentProps: { user }
+    });
+
+    await modal.present();
+  }
 }

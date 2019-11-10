@@ -4,6 +4,8 @@ import { RootState, selectUser } from 'src/app/store';
 import { ClassService } from 'src/app/services/class.service';
 import { Class } from 'src/app/models/class.model';
 import { ActivityService } from 'src/app/services/activity.service';
+import { ModalController } from '@ionic/angular';
+import { ViewActivityComponent } from 'src/app/components/view-activity/view-activity.component';
 
 @Component({
   selector: 'app-activities',
@@ -21,12 +23,17 @@ export class ActivitiesPage implements OnInit {
   constructor(
     private store: Store<RootState>,
     private classService: ClassService,
-    private activityService: ActivityService
-  ) {
+    private activityService: ActivityService,
+    public modalController: ModalController
+  ) {}
+
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.userData$.subscribe(user => {
       this.user = user;
 
-      classService.getAllclasses(user.id).subscribe(async list => {
+      this.classService.getAllclasses(user.id).subscribe(async list => {
         this.classlist = list;
         if (this.classlist[0]) {
           this.selectedClass = this.classlist[0];
@@ -35,8 +42,6 @@ export class ActivitiesPage implements OnInit {
       });
     });
   }
-
-  ngOnInit() {}
 
   getActivityByType(classId, type): any {
     return new Promise(res => {
@@ -60,5 +65,22 @@ export class ActivitiesPage implements OnInit {
 
   convertToDate(date) {
     return new Date(date * 1000);
+  }
+
+  async viewActivity(activity) {
+    this.activityService
+      .getSubmitByActivity(activity.id)
+      .subscribe(async submits => {
+        const modal = await this.modalController.create({
+          component: ViewActivityComponent,
+          componentProps: {
+            activity,
+            submits,
+            selectedClass: this.selectedClass
+          }
+        });
+
+        await modal.present();
+      });
   }
 }

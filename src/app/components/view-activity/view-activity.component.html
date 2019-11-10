@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Activity</ion-title>
+    <ion-button (click)="close()" slot="end" fill="clear" color="dark">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        {{ activity.title }}
+      </ion-card-title>
+      <ion-card-subtitle class="ion-text-center">
+        {{ activity.instruction }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend"
+      >
+      </canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!loading">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" text-center>Item Analysis</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2"> #</ion-col>
+        <ion-col size="5" text-center> Correct Students </ion-col>
+        <ion-col size="5" text-center> Incorrect Students </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let question of activity.questions">
+        <ion-col size="2">{{ question.number }}</ion-col>
+        <ion-col size="5" text-center>{{
+          getCorrectPercent(question)
+        }}</ion-col>
+        <ion-col size="5" text-center>{{
+          getInCorrectPercent(question)
+        }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="!loading">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" text-center>Submit List</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" text-center>ID</ion-col>
+        <ion-col size="5" text-center> Student </ion-col>
+        <ion-col size="4" text-center> Score </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let submit of submits">
+        <ion-col size="3" text-center>
+          {{ submit.student.student_number }}
+        </ion-col>
+        <ion-col size="5" text-center>
+          {{ submit.student.name.first }} {{ submit.student.name.last }}
+        </ion-col>
+        <ion-col size="4" text-center
+          >{{ submit.score }} / {{ submit.total_items }} Points
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

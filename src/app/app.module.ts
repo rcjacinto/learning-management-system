@@ -5,7 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
@@ -18,12 +18,24 @@ import { storageSyncReducer, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AddClassComponent } from './components/add-class/add-class.component';
 import { FormsModule } from '@angular/forms';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { ViewActivityComponent } from './components/view-activity/view-activity.component';
+import { ChartsModule } from 'ng2-charts';
 
 const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
 
 @NgModule({
-  declarations: [AppComponent, AddClassComponent],
-  entryComponents: [AddClassComponent],
+  declarations: [
+    AppComponent,
+    AddClassComponent,
+    ViewProfileComponent,
+    ViewActivityComponent
+  ],
+  entryComponents: [
+    AddClassComponent,
+    ViewProfileComponent,
+    ViewActivityComponent
+  ],
   imports: [
     FormsModule,
     BrowserModule,
@@ -31,9 +43,11 @@ const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    Ng2SearchPipeModule,
     AngularFirestoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    ChartsModule
   ],
   providers: [
     StatusBar,

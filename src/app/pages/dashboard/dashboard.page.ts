@@ -31,10 +31,14 @@ export class DashboardPage implements OnInit {
     public store: Store<RootState>,
     public postService: PostsService,
     public toastController: ToastController
-  ) {
+  ) {}
+
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.userData$.subscribe(user => {
       this.user = user;
-      classService.getAllclasses(user.id).subscribe(async list => {
+      this.classService.getAllclasses(user.id).subscribe(async list => {
         this.classlist = list;
         if (this.classlist[0]) {
           this.selectedClass = this.classlist[0];
@@ -48,8 +52,6 @@ export class DashboardPage implements OnInit {
       });
     });
   }
-
-  ngOnInit() {}
 
   async presentModal() {
     const modal = await this.modalController.create({
