@@ -22,7 +22,7 @@ export class GradesPage implements OnInit {
   selectedClass: Class;
   students: any[] = [];
   grades: any[] = [];
-  loading = true;
+  loading = false;
   selectedTerm = 'prelim';
   activityList: Activity[];
   quizList: Activity[];
@@ -65,7 +65,9 @@ export class GradesPage implements OnInit {
 
   async getAllStudentGrades(term) {
     console.log(this.selectedClass);
-
+    if (!this.selectedClass) {
+      return (this.loading = false);
+    }
     this.loading = true;
     this.grades = [];
     if (this.selectedClass.members.length == 0) {

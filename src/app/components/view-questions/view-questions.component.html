@@ -1,0 +1,197 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="danger">
+    <ion-title>VIEW ACTIVITY DETAILS</ion-title>
+    <ion-button (click)="close()" slot="end" fill="clear" color="light">
+      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<!-- <ion-content>
+  <ion-card>
+    <ion-list padding>
+      <div class="pb-10">
+        <ion-label position="fixed"><p>Type</p> </ion-label>
+
+        <ion-select
+          [interfaceOptions]="customOptions"
+          interface="action-sheet"
+          placeholder="Select Type"
+          [(ngModel)]="activity.type"
+        >
+          <ion-select-option value="quiz">Quiz</ion-select-option>
+          <ion-select-option value="exams">Exams</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="pb-10">
+        <ion-label position="fixed">
+          <p>Term</p>
+        </ion-label>
+
+        <ion-select
+          [interfaceOptions]="customOptions"
+          interface="action-sheet"
+          placeholder="Select Type"
+          [(ngModel)]="activity.term"
+        >
+          <ion-select-option value="prelim">Prelim</ion-select-option>
+          <ion-select-option value="midterm">Exams</ion-select-option>
+          <ion-select-option value="pre-finals">Pre-Finals</ion-select-option>
+          <ion-select-option value="finals">Pre-Finals</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="pb-10">
+        <ion-label position="fixed"> <p>Title</p> </ion-label>
+        <ion-input [(ngModel)]="activity.title"></ion-input>
+      </div>
+      <div class="pb-10">
+        <ion-label position="fixed"> <p>Instruction</p> </ion-label>
+        <ion-textarea [(ngModel)]="activity.instruction"></ion-textarea>
+      </div>
+    </ion-list>
+  </ion-card>
+</ion-content> -->
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-segment (ionChange)="segmentChanged($event)" readonly>
+          <ion-segment-button mode="ios" checked value="details">
+            <ion-label>Details</ion-label>
+          </ion-segment-button>
+          <ion-segment-button mode="ios" value="questions">
+            <ion-label>Questions</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-select
+          interface="alert"
+          placeholder="CLASIFICATION"
+          mode="ios"
+          [(ngModel)]="activity.type"
+          disabled
+        >
+          <ion-select-option value="quiz" selected>QUIZ</ion-select-option>
+          <ion-select-option value="exam">
+            EXAM
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="6">
+        <ion-select
+          interface="alert"
+          placeholder="TERM"
+          mode="ios"
+          [(ngModel)]="activity.term"
+          disabled
+        >
+          <ion-select-option value="prelim">PRELIM</ion-select-option>
+          <ion-select-option value="midterm" selected
+            >MIDTERM</ion-select-option
+          >
+          <ion-select-option value="pre-finals">PRE-FINALS</ion-select-option>
+          <ion-select-option value="finals">FINALS</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'details'">
+      <ion-item lines="none">
+        <ion-label position="stacked" color="dark">Title</ion-label>
+        <ion-input
+          type="text"
+          placeholder=""
+          color="dark"
+          [(ngModel)]="activity.title"
+          readonly
+        ></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked" color="dark">Instruction</ion-label>
+        <ion-textarea
+          [(ngModel)]="activity.instruction"
+          readonly
+        ></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'questions'">
+      <ion-list-header>
+        <ion-label>{{ activity.questions.length }} QUESTIONS </ion-label>
+      </ion-list-header>
+    </ion-list>
+    <div *ngSwitchCase="'questions'">
+      <ion-list *ngFor="let question of activity.questions">
+        <ion-label
+          ><p class="q-num">
+            Question # {{ question.number }} ({{ question.points }} Points)
+          </p></ion-label
+        >
+        <ion-textarea [value]="question.text" readonly></ion-textarea>
+        <div [ngSwitch]="question.type">
+          <ion-radio-group name="options" *ngSwitchCase="'mc'">
+            <ion-item lines="none" *ngFor="let opt of question.options">
+              <ion-input
+                type="text"
+                [value]="opt.key + '.  ' + opt.value"
+                readonly
+                [ngClass]="{ 'border-success': opt.isCorrect }"
+              ></ion-input>
+
+              <ion-checkbox
+                slot="end"
+                [checked]="opt.isCorrect"
+                disabled
+              ></ion-checkbox>
+            </ion-item>
+          </ion-radio-group>
+          <ion-radio-group name="options" *ngSwitchCase="'sa'">
+            <ion-item lines="none">
+              <ion-input
+                type="text"
+                placeholder="Correct Answer"
+                [value]="'Correct Answer: ' + question.options[0].value"
+                readonly
+                class="border-success"
+              >
+              </ion-input>
+              <ion-checkbox slot="end" checked disabled></ion-checkbox>
+            </ion-item>
+          </ion-radio-group>
+          <ion-radio-group name="options" *ngSwitchCase="'tof'">
+            <ion-item lines="none">
+              <ion-input
+                type="text"
+                placeholder="Correct Answer"
+                [value]="'Correct Answer: ' + question.options[0].value"
+                readonly
+                class="border-success"
+              >
+              </ion-input>
+              <ion-checkbox slot="end" checked disabled></ion-checkbox>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+
+  <!-- <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="onClick()" expand="block" fill="outline">
+          Post to Class
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="onClick()" expand="block" fill="outline">
+          Save to Library
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>

@@ -1,29 +1,54 @@
-<app-header [title]="'LIBRARY'"></app-header>
-
+<app-header title="LIBRARIES"></app-header>
+<ion-segment interface="alert" mode="ios" [(ngModel)]="type">
+  <ion-segment-button mode="ios" value="quiz">
+    <ion-label>QUIZ</ion-label>
+  </ion-segment-button>
+  <ion-segment-button mode="ios" value="exams">
+    <ion-label>EXAMS</ion-label>
+  </ion-segment-button>
+</ion-segment>
 <ion-content>
-  <ion-list margin-vertical>
-    <ion-searchbar
-      placeholder="Search"
-      inputmode="text"
-      mode="ios"
-    ></ion-searchbar>
-    <ion-item button>
-      <ion-icon name="ios-create" slot="start"></ion-icon>
-      <ion-label>
-        <p>QUIZZES</p>
-      </ion-label>
-    </ion-item>
-    <ion-item button>
-      <ion-icon name="ios-journal" slot="start"></ion-icon>
-      <ion-label>
-        <p>EXAMS</p>
-      </ion-label>
-    </ion-item>
-    <ion-item button>
-      <ion-icon name="images" slot="start"></ion-icon>
-      <ion-label>
-        <p>IMAGES</p>
-      </ion-label>
-    </ion-item>
+  <ion-list padding>
+    <div class="classes-select">
+      <ion-select
+        class="classes-options"
+        [(ngModel)]="selectedClass"
+        (ionChange)="setSelectedClass()"
+      >
+        <ion-select-option *ngFor="let list of classlist" [value]="list">
+          {{ list.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <div [ngSwitch]="type">
+      <div *ngSwitchCase="'quiz'">
+        <ion-card class="ion-text-center" padding *ngIf="quizlist.length == 0">
+          No Quiz in this Class
+        </ion-card>
+        <ion-list padding margin-vertical>
+          <ion-item
+            button
+            *ngFor="let quiz of quizlist; let i = index"
+            (click)="viewActivity(quiz)"
+          >
+            <ion-label>{{ i + 1 }}. {{ quiz.title }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div *ngSwitchCase="'exams'">
+        <ion-card class="ion-text-center" padding *ngIf="examslist.length == 0">
+          No Exams in this Class
+        </ion-card>
+        <ion-list padding margin-vertical>
+          <ion-item
+            button
+            *ngFor="let exams of examslist; let i = index"
+            (click)="viewActivity(exams)"
+          >
+            <ion-label>{{ i + 1 }}. {{ exams.title }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
   </ion-list>
 </ion-content>

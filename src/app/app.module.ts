@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { ViewActivityComponent } from './components/view-activity/view-activity.component';
 import { ChartsModule } from 'ng2-charts';
+import { ViewQuestionsComponent } from './components/view-questions/view-questions.component';
 
 const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
 
@@ -29,12 +30,14 @@ const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
     AppComponent,
     AddClassComponent,
     ViewProfileComponent,
-    ViewActivityComponent
+    ViewActivityComponent,
+    ViewQuestionsComponent
   ],
   entryComponents: [
     AddClassComponent,
     ViewProfileComponent,
-    ViewActivityComponent
+    ViewActivityComponent,
+    ViewQuestionsComponent
   ],
   imports: [
     FormsModule,

@@ -24,14 +24,9 @@ export class AppComponent {
       icon: 'ios-contact'
     },
     {
-      title: 'Messages',
-      url: '/messages',
-      icon: 'chatboxes'
-    },
-    {
-      title: 'Settings',
-      url: '/settings',
-      icon: 'settings'
+      title: 'About',
+      icon: 'alert',
+      url: '/about'
     }
   ];
 
