@@ -55,6 +55,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [storageSyncReducer];
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

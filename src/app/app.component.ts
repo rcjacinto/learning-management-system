@@ -19,6 +19,11 @@ export class AppComponent {
   user: User;
   public appPages = [
     {
+      title: 'Dashboard',
+      url: '/tabs',
+      icon: 'school'
+    },
+    {
       title: 'Profile',
       url: '/profile',
       icon: 'ios-contact'

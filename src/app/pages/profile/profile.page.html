@@ -1,0 +1,66 @@
+<app-header title="Profile"></app-header>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header color="danger">
+      <div class="pl-20">
+        <div class="profile-img">
+          <img [src]="user.image" alt="" />
+        </div>
+
+        <ion-card-title>
+          <span class="text-light user-name">
+            {{ currentUser.name.first }} {{ currentUser.name.last }}
+          </span>
+        </ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="pl-20 user-email">
+        {{ currentUser.email }}
+      </div>
+      <input type="file" #file hidden (change)="uploadImage($event)" />
+      <ion-button (click)="file.click()" class="upload-btn" fill="clear">
+        <ion-icon slot="icon-only" name="camera" color="dark"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-list padding>
+      <ion-item>
+        <ion-icon name="contact" slot="start"></ion-icon>
+
+        <ion-input
+          type="text"
+          placeholder="First name"
+          [(ngModel)]="user.name.first"
+        ></ion-input>
+        <ion-input
+          type="text"
+          placeholder="Last name"
+          [(ngModel)]="user.name.last"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="compass" slot="start"></ion-icon>
+        <ion-input
+          type="text"
+          placeholder="Address"
+          [(ngModel)]="user.address"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-input
+          type="number"
+          placeholder="Mobile number"
+          [(ngModel)]="user.mobile"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-button (click)="updateProfile()" expand="full">
+    Update
+  </ion-button>
+</ion-content>
