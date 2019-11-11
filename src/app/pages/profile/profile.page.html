@@ -19,7 +19,7 @@
         {{ currentUser.email }}
       </div>
       <input type="file" #file hidden (change)="uploadImage($event)" />
-      <ion-button (click)="file.click()" class="upload-btn" fill="clear">
+      <ion-button (click)="file.click()" class="upload-btn" color="light">
         <ion-icon slot="icon-only" name="camera" color="dark"></ion-icon>
       </ion-button>
     </ion-card-content>
@@ -57,10 +57,9 @@
           [(ngModel)]="user.mobile"
         ></ion-input>
       </ion-item>
+      <ion-button (click)="updateProfile()" expand="full" margin-top>
+        Update
+      </ion-button>
     </ion-list>
   </ion-card>
-
-  <ion-button (click)="updateProfile()" expand="full">
-    Update
-  </ion-button>
 </ion-content>
