@@ -14,7 +14,7 @@ import { SetUser } from 'src/app/store/user/user.action';
 })
 export class LoginPage implements OnInit {
   registerForm: FormGroup;
-  loginIsClicked = false;
+  loginIsClicked = true;
   submitted = false;
   loading = false;
   constructor(
@@ -54,9 +54,26 @@ export class LoginPage implements OnInit {
         this.userService.getUser(res.user.uid).subscribe(user => {
           console.log(user);
           user.id = res.user.uid;
+          this.store.dispatch(new SetUser(user));
           if (user.role === 'instructor') {
-            this.store.dispatch(new SetUser(user));
-            this.navController.navigateRoot('/tabs');
+            if (user.status == 1) {
+              this.navController.navigateRoot('/tabs');
+            } else if (user.status == 0) {
+              this.presentToast(
+                'Please wait until account is verified by admin.',
+                'secondary'
+              );
+            } else if (user.status == 2) {
+              this.presentToast(
+                'Account deactivated. Please contact admin!',
+                'secondary'
+              );
+            } else {
+              this.presentToast(
+                'Please wait until account is verified by admin.',
+                'secondary'
+              );
+            }
           } else {
             alert('not yet');
           }

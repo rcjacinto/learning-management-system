@@ -38,18 +38,20 @@ export class DashboardPage implements OnInit {
   ionViewWillEnter() {
     this.userData$.subscribe(user => {
       this.user = user;
-      this.classService.getAllclasses(user.id).subscribe(async list => {
-        this.classlist = list;
-        if (this.classlist[0]) {
-          this.selectedClass = this.classlist[0];
-          console.log(this.selectedClass);
-          this.postService
-            .getPostsByClass(this.selectedClass.id)
-            .subscribe(posts => {
-              this.postlist = posts;
-            });
-        }
-      });
+      if (user) {
+        this.classService.getAllclasses(user.id).subscribe(async list => {
+          this.classlist = list;
+          if (this.classlist[0]) {
+            this.selectedClass = this.classlist[0];
+            console.log(this.selectedClass);
+            this.postService
+              .getPostsByClass(this.selectedClass.id)
+              .subscribe(posts => {
+                this.postlist = posts;
+              });
+          }
+        });
+      }
     });
   }
 

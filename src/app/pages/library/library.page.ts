@@ -34,13 +34,15 @@ export class LibraryPage implements OnInit {
     this.userData$.subscribe(user => {
       this.user = user;
 
-      this.classService.getAllclasses(user.id).subscribe(async list => {
-        this.classlist = list;
-        if (this.classlist[0]) {
-          this.selectedClass = this.classlist[0];
-          console.log(this.selectedClass);
-        }
-      });
+      if (user) {
+        this.classService.getAllclasses(user.id).subscribe(async list => {
+          this.classlist = list;
+          if (this.classlist[0]) {
+            this.selectedClass = this.classlist[0];
+            console.log(this.selectedClass);
+          }
+        });
+      }
     });
   }
 
