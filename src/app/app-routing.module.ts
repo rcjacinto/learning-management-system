@@ -89,7 +89,8 @@ const routes: Routes = [
     path: "take-exams",
     loadChildren: "./pages/take-exams/take-exams.module#TakeExamsPageModule",
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'view-my-student', loadChildren: './pages/view-my-student/view-my-student.module#ViewMyStudentPageModule' }
 ];
 
 @NgModule({

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { NavController, ToastController, MenuController } from '@ionic/angular';
-import { UserService } from 'src/app/services/user.service';
-import { Store } from '@ngrx/store';
-import { RootState } from 'src/app/store';
-import { SetUser } from 'src/app/store/user/user.action';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AuthService } from "src/app/services/auth.service";
+import { NavController, ToastController, MenuController } from "@ionic/angular";
+import { UserService } from "src/app/services/user.service";
+import { Store } from "@ngrx/store";
+import { RootState } from "src/app/store";
+import { SetUser } from "src/app/store/user/user.action";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss']
+  selector: "app-login",
+  templateUrl: "./login.page.html",
+  styleUrls: ["./login.page.scss"]
 })
 export class LoginPage implements OnInit {
   registerForm: FormGroup;
@@ -28,8 +28,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ["", [Validators.required]],
+      password: ["", [Validators.required]]
     });
   }
 
@@ -55,27 +55,29 @@ export class LoginPage implements OnInit {
           console.log(user);
           user.id = res.user.uid;
           this.store.dispatch(new SetUser(user));
-          if (user.role === 'instructor') {
+          if (user.role === "instructor") {
             if (user.status == 1) {
-              this.navController.navigateRoot('/tabs');
+              this.navController.navigateRoot("/tabs");
             } else if (user.status == 0) {
               this.presentToast(
-                'Please wait until account is verified by admin.',
-                'secondary'
+                "Please wait until account is verified by admin.",
+                "secondary"
               );
             } else if (user.status == 2) {
               this.presentToast(
-                'Account deactivated. Please contact admin!',
-                'secondary'
+                "Account deactivated. Please contact admin!",
+                "secondary"
               );
             } else {
               this.presentToast(
-                'Please wait until account is verified by admin.',
-                'secondary'
+                "Please wait until account is verified by admin.",
+                "secondary"
               );
             }
-          } else {
-            this.navController.navigateRoot('/student-dashboard');
+          } else if (user.role === "student") {
+            this.navController.navigateRoot("/student-dashboard");
+          } else if (user.role === "parent") {
+            this.navController.navigateRoot("/view-my-student");
           }
           this.loading = false;
         });
@@ -83,7 +85,7 @@ export class LoginPage implements OnInit {
       .catch(err => {
         console.log(err);
         this.loading = false;
-        this.presentToast(err.message, 'danger');
+        this.presentToast(err.message, "danger");
       });
   }
 

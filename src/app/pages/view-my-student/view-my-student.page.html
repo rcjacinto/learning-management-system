@@ -1,0 +1,192 @@
+<app-header title="GRADES"></app-header>
+<ion-list>
+  <ion-card margin-top>
+    <ion-card-header color="danger">
+      <div class="pl-20">
+        <div class="profile-img">
+          <img [src]="student?.image" alt="" />
+        </div>
+
+        <ion-card-title>
+          <span class="text-light user-name">
+            {{ student?.name.first }} {{ student?.name.last }}
+          </span>
+        </ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="pl-20 user-email">
+        {{ student?.email }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-select
+    class="classes-options"
+    [(ngModel)]="selectedClass"
+    (ionChange)="setSelectedTerm()"
+  >
+    <ion-select-option *ngFor="let list of classlist" [value]="list">
+      {{ list.name }}
+    </ion-select-option>
+  </ion-select>
+  <ion-segment
+    mode="ios"
+    [(ngModel)]="selectedTerm"
+    (ionChange)="setSelectedTerm()"
+  >
+    <ion-segment-button checked mode="ios" value="prelim">
+      <ion-label>PRELIM</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="midterm">
+      <ion-label>MIDTERM</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="pre-finals">
+      <ion-label>PRE-FINALS</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="finals">
+      <ion-label>FINALS</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="total">
+      <ion-label>TOTAL</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-list>
+
+<ion-content>
+  <ion-card>
+    <ion-grid fixed *ngIf="selectedTerm != 'total'">
+      <ion-row>
+        <ion-col size="3">
+          <ion-text>
+            <h1 class="text-wrap text-center">Performance 60%</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <h1 class="text-wrap text-center">Quiz 10%</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <h1 class="text-wrap text-center">Exam 30%</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <h1 class="text-wrap text-center">Total 100%</h1>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="loading">
+        <ion-col size="12" class="ion-text-center">
+          <ion-spinner name="bubbles"></ion-spinner>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let grade of grades | filter: search">
+        <ion-col size="3">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.performance.grade | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.quiz | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.exams | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.total | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid fixed *ngIf="selectedTerm == 'total'">
+      <ion-row>
+        <ion-col size="2.5">
+          <ion-text>
+            <h1 class="text-wrap text-center">Prelim</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <h1 class="text-wrap text-center">Midterm</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <h1 class="text-wrap text-center">Pre-Finals</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <h1 class="text-wrap text-center">Finals</h1>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>
+            <h1 class="text-wrap text-center">Total</h1>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="loading">
+        <ion-col size="12" class="ion-text-center">
+          <ion-spinner name="bubbles"></ion-spinner>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let grade of grades | filter: search">
+        <ion-col size="2.5">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.prelim | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.midterm | number: '1.1-2' }}%{{ grade.quiz | number:
+              '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.prefinals | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2.5">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.finals | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>
+            <p class="text-wrap text-center">
+              {{ grade.average | number: '1.1-2' }}%
+            </p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
