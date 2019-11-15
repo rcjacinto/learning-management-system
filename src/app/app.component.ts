@@ -17,24 +17,7 @@ import { User } from './models/user.model';
 export class AppComponent {
   userData$ = this.store.pipe(select(selectUser));
   user: User;
-  public appPages = [
-    {
-      title: 'Dashboard',
-      url: '/tabs',
-      icon: 'school'
-    },
-    {
-      title: 'Profile',
-      url: '/profile',
-      icon: 'ios-contact'
-    },
-    {
-      title: 'About',
-      icon: 'alert',
-      url: '/about'
-    }
-  ];
-
+  public appPages = [];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -53,6 +36,54 @@ export class AppComponent {
       this.userData$.subscribe(res => {
         console.log(res);
         this.user = res;
+        if (this.user.role == 'instructor') {
+          this.appPages = [
+            {
+              title: 'Dashboard',
+              url: '/tabs',
+              icon: 'school'
+            },
+            {
+              title: 'Profile',
+              url: '/profile',
+              icon: 'ios-contact'
+            },
+            {
+              title: 'About',
+              icon: 'alert',
+              url: '/about'
+            }
+          ];
+        } else if (this.user.role == 'student') {
+          this.appPages = [
+            {
+              title: 'Dashboard',
+              url: '/student-dashboard',
+              icon: 'school'
+            },
+            {
+              title: 'Profile',
+              url: '/profile',
+              icon: 'ios-contact'
+            },
+            {
+              title: 'My Activities',
+              url: '/my-activities',
+              icon: 'ios-paper'
+            },
+            {
+              title: 'My Grades',
+              url: '/my-grades',
+              icon: 'ios-pie'
+            },
+
+            {
+              title: 'About',
+              icon: 'alert',
+              url: '/about'
+            }
+          ];
+        }
       });
       this.splashScreen.hide();
     });

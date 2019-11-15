@@ -30,13 +30,6 @@
       <ion-label>TOTAL</ion-label>
     </ion-segment-button>
   </ion-segment>
-  <ion-searchbar
-    placeholder="Search Student"
-    [debounce]="250"
-    mode="ios"
-    [(ngModel)]="search"
-  >
-  </ion-searchbar>
 </ion-list>
 
 <ion-content>
@@ -45,25 +38,20 @@
       <ion-row>
         <ion-col size="3">
           <ion-text>
-            <h1 class="text-wrap">Student Name</h1>
+            <h1 class="text-wrap text-center">Performance 60%</h1>
           </ion-text>
         </ion-col>
         <ion-col size="3">
           <ion-text>
-            <h1 class="text-wrap text-center">Performance 60%</h1>
-          </ion-text>
-        </ion-col>
-        <ion-col size="2">
-          <ion-text>
             <h1 class="text-wrap text-center">Quiz 10%</h1>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-text>
             <h1 class="text-wrap text-center">Exam 30%</h1>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-text>
             <h1 class="text-wrap text-center">Total 100%</h1>
           </ion-text>
@@ -74,20 +62,7 @@
           <ion-spinner name="bubbles"></ion-spinner>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="!loading && grades.length == 0">
-        <ion-col size="12" class="ion-text-center">
-          No Student in this class
-        </ion-col>
-      </ion-row>
       <ion-row *ngFor="let grade of grades | filter: search">
-        <ion-col size="3">
-          <ion-text>
-            <p class="text-wrap ion-text-capitalize">
-              {{ grade.student.name.first.toLowerCase() }} {{
-              grade.student.name.last.toLowerCase() }}
-            </p>
-          </ion-text>
-        </ion-col>
         <ion-col size="3">
           <ion-text>
             <p class="text-wrap text-center">
@@ -95,21 +70,21 @@
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.quiz | number: '1.1-2' }}%
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.exams | number: '1.1-2' }}%
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.total | number: '1.1-2' }}%
@@ -121,27 +96,22 @@
 
     <ion-grid fixed *ngIf="selectedTerm == 'total'">
       <ion-row>
-        <ion-col size="2">
-          <ion-text>
-            <h1 class="text-wrap">Student Name</h1>
-          </ion-text>
-        </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <h1 class="text-wrap text-center">Prelim</h1>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <h1 class="text-wrap text-center">Midterm</h1>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <h1 class="text-wrap text-center">Pre-Finals</h1>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <h1 class="text-wrap text-center">Finals</h1>
           </ion-text>
@@ -157,28 +127,16 @@
           <ion-spinner name="bubbles"></ion-spinner>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="!loading && grades.length == 0">
-        <ion-col size="12" class="ion-text-center">
-          No Student in this class
-        </ion-col>
-      </ion-row>
+
       <ion-row *ngFor="let grade of grades | filter: search">
-        <ion-col size="2">
-          <ion-text>
-            <p class="text-wrap ion-text-capitalize">
-              {{ grade.student.name.first.toLowerCase() }} {{
-              grade.student.name.last.toLowerCase() }}
-            </p>
-          </ion-text>
-        </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.prelim | number: '1.1-2' }}%
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.midterm | number: '1.1-2' }}%{{ grade.quiz | number:
@@ -186,14 +144,14 @@
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.prefinals | number: '1.1-2' }}%
             </p>
           </ion-text>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2.5">
           <ion-text>
             <p class="text-wrap text-center">
               {{ grade.finals | number: '1.1-2' }}%

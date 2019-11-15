@@ -9,6 +9,7 @@ import { Class } from 'src/app/models/class.model';
 import { User } from 'src/app/models/user.model';
 import { Store, select } from '@ngrx/store';
 import { RootState, selectUser } from 'src/app/store';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-class',
@@ -21,6 +22,7 @@ export class AddClassComponent implements OnInit {
   classname = '';
   description = '';
   color = 'red';
+  classCode = '';
 
   constructor(
     public pickerController: PickerController,
@@ -147,6 +149,18 @@ export class AddClassComponent implements OnInit {
     toast.present();
   }
 
+  async presentToastMessage(message, color) {
+    const toast = await this.toastController.create({
+      animated: true,
+      color,
+      message,
+      mode: 'ios',
+      position: 'middle',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   randomCode() {
     let result = '';
     const chars =
@@ -155,5 +169,34 @@ export class AddClassComponent implements OnInit {
       result += chars[Math.floor(Math.random() * chars.length)];
     }
     return result;
+  }
+
+  joinClass() {
+    if (this.classCode.trim() === '') {
+      return;
+    }
+    this.classService
+      .getClassByCode(this.classCode)
+      .pipe(take(1))
+      .subscribe(snapshot => {
+        if (snapshot.length > 0) {
+          const newClass: Class = snapshot[0];
+          if (newClass.members.includes(this.user.id)) {
+            this.presentToastMessage(
+              'Already a member of this class',
+              'danger'
+            );
+          } else {
+            newClass.members.push(this.user.id);
+            this.classService.updateClass(newClass).then(() => {
+              this.presentToastMessage('Class joined', 'success');
+
+              this.dismissModal();
+            });
+          }
+        } else {
+          this.presentToastMessage('Please check the class code!', 'danger');
+        }
+      });
   }
 }

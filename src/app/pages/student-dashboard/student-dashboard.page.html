@@ -1,0 +1,143 @@
+<app-header [title]="'DASHBOARD'"></app-header>
+<ion-segment mode="ios" [(ngModel)]="segment">
+  <ion-segment-button mode="ios" checked value="anouncements">
+    <ion-label>Anouncements</ion-label>
+  </ion-segment-button>
+  <ion-segment-button mode="ios" value="classes">
+    <ion-label>My Classes</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<div class="classes-select" *ngIf="segment == 'anouncements' && classlist.length > 0">
+  <ion-select class="classes-options" [(ngModel)]="selectedClass" (ionChange)="setSelectedClass()">
+    <ion-select-option *ngFor="let list of classlist" [value]="list">
+      {{ list.name }}
+    </ion-select-option>
+  </ion-select>
+</div>
+<ion-content>
+  <div [ngSwitch]="segment">
+    <div *ngSwitchCase="'anouncements'" class="anouncements">
+      <ion-card>
+        <ion-card-header> </ion-card-header>
+        <ion-card-content>
+          <ion-textarea mode="ios" placeholder="Write a post" [(ngModel)]="message"></ion-textarea>
+          <ion-button fill="clear" id="post-btn" (click)="addPost()" [disabled]="loading">
+            Post
+          </ion-button>
+          <!-- <ion-button fill="clear">
+            <ion-icon slot="icon-only" name="attach" class="attach"></ion-icon>
+          </ion-button> -->
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="ion-text-center" padding *ngIf="postlist.length == 0">
+        No Posts or Activities in this Class
+      </ion-card>
+
+      <ion-card *ngFor="let post of postlist">
+        <ion-card-content>
+          <ion-item lines="none">
+            <img [src]="post.posted_by.image" />
+            <ion-label>
+              <h1 class="ion-text-capitalize">
+                {{ post.posted_by.name.first }} {{ post.posted_by.name.last }}
+              </h1>
+              <p class="ion-text-capitalize">{{ post.posted_by.role }}</p>
+              <p>
+                {{
+                  convertToDate(post.date.created.seconds)
+                    | date: 'MMM dd yyyy hh:mm '
+                }}
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-text color="dark">
+            <p>
+              {{
+                post.type == 1
+                  ? 'Posted an Announcement to '
+                  : post.type == 2
+                  ? 'Posted an Assignement to '
+                  : post.type == 3
+                  ? 'Posted an Activity to'
+                  : post.type == 4
+                  ? post.submit.activity.type == 'quiz'
+                    ? 'Submitted a Quiz'
+                    : 'Submitted an Exam'
+                  : 'Submitted a post to'
+              }}
+              <ion-icon name="bookmark" [color]="post.posted_to.color"></ion-icon>
+              {{ post.posted_to.name }}
+            </p>
+          </ion-text>
+          <div class="post-card bg-light">
+            <div>{{ post.message }}</div>
+            <div *ngIf="post.type == 3">
+              <div class="text-capitalize">
+                Type: {{ post.activity.type }} | {{ post.activity.term }}
+              </div>
+              <div>Title: {{ post.activity.title }}</div>
+              <div>Instruction: {{ post.activity.instruction }}</div>
+              <div>
+                Deadline:
+                {{
+                  convertToDate(post.activity.deadline.seconds)
+                    | date: 'MMM dd yyyy hh:mm a'
+                }}
+              </div>
+            </div>
+            <div *ngIf="post.type == 4">
+              <div class="text-capitalize">
+                Type: {{ post.submit.activity.type }} |
+                {{ post.submit.activity.term }}
+              </div>
+              <div>Title: {{ post.submit.activity.title }}</div>
+              <div>Score: {{ post.submit.score }}</div>
+              <div>
+                Date Submitted:
+                {{
+                  convertToDate(post.submit.date.submitted.seconds)
+                    | date: 'MMM dd yyyy hh:mm a'
+                }}
+              </div>
+            </div>
+          </div>
+          <!-- <ion-button slot="end" fill="clear">
+            <ion-icon slot="icon-only" name="ios-thumbs-up"></ion-icon>
+          </ion-button>
+          <ion-button slot="end" fill="clear">
+            <ion-icon slot="icon-only" name="ios-text"></ion-icon>
+          </ion-button> -->
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'classes'" class="classes">
+      <ion-list margin-vertical>
+        <ion-searchbar placeholder="Search" inputmode="text" mode="ios"></ion-searchbar>
+        <ion-item button *ngFor="let list of classlist">
+          <ion-icon name="bookmark" slot="start" [color]="list.color"></ion-icon>
+          <ion-label>
+            <h1>{{ list.name }}</h1>
+            <!-- <p>{{ list.date.created | date: 'd MMM yyyy' }}</p> -->
+          </ion-label>
+          <div>
+            <p>{{ list.code }}</p>
+          </div>
+        </ion-item>
+
+        <div class="ion-text-center empty" *ngIf="classlist.length == 0">
+          <h1>No Classes Joined</h1>
+          <p>
+            Ask your instructor for Classcode to join a Class
+          </p>
+        </div>
+      </ion-list>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="light" (click)="presentModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </div>
+</ion-content>

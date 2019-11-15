@@ -1,0 +1,131 @@
+.anouncements {
+  ion-item {
+    --padding-bottom: 0.1rem;
+    --padding-end: 0.1rem;
+    --padding-start: 0.1rem;
+    --padding-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      border-radius: 50%;
+      margin: 0 0.5rem;
+    }
+    h1 {
+      font-size: 0.8rem;
+      margin: 0.3rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.classes {
+  h1 {
+    font-size: 0.7rem;
+  }
+
+  p {
+    font-size: 0.6rem;
+  }
+}
+
+ion-card {
+  --background: #ffffff;
+  ion-card-header {
+    padding: 0;
+    img {
+      max-height: 35vh;
+    }
+  }
+  ion-textarea {
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+    --padding-bottom: 4px;
+    --padding-end: 8px;
+    --padding-start: 8px;
+    --padding-top: 4px;
+    margin-top: 0.4rem;
+  }
+  .attach {
+    transform: rotate(90deg);
+  }
+
+  ion-card-content {
+    background: #ffffff;
+    padding: 0.3rem;
+    ion-button {
+      font-size: 0.7rem;
+      --color-activated: #ffffff;
+      --color-focused: #ffffff;
+      --padding-bottom: 4px;
+      --padding-end: 4px;
+      --padding-start: 4px;
+      --padding-top: 4px;
+      --color: #888888;
+      float: right;
+    }
+    p {
+      padding: 0 0.4rem;
+    }
+  }
+}
+
+ion-content {
+  --background: #f1f1f1;
+}
+
+ion-segment {
+  padding: 20px 15px 10px;
+  background: #f1f1f1;
+}
+
+ion-segment-button {
+  --background: #ffffff;
+  --background-checked: var(--ion-color-danger);
+  --border-radius: 4px;
+  --color: grey;
+  --color-checked: #ffffff;
+  --indicator-color-checked: #222222;
+  --transition: background-color 15ms linear;
+  font-size: 0.7rem;
+}
+
+ion-list {
+  min-height: 50vh;
+}
+
+#post-btn {
+  --color-activated: #857c7c;
+  --color-focused: #ffffff;
+  color: black;
+}
+
+.empty {
+  padding: 50px;
+  color: #222222;
+  h1 {
+    font-size: 1rem;
+  }
+}
+
+ion-select {
+  background: var(--ion-color-danger);
+  border: 1px solid black;
+  color: #ffffff;
+  margin: 0 0.8rem;
+  font-size: 0.8rem;
+  --padding-end: 1rem;
+  border-radius: 0.4rem;
+  button {
+    padding: 0 !important;
+  }
+}
+
+.post-card {
+  padding: 15px;
+  border: 0.5px solid rgb(204, 202, 202);
+  font-size: 0.8rem;
+}

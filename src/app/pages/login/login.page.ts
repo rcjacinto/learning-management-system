@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
               );
             }
           } else {
-            alert('not yet');
+            this.navController.navigateRoot('/student-dashboard');
           }
           this.loading = false;
         });

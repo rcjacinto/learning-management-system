@@ -1,0 +1,358 @@
+<app-header></app-header>
+
+<ion-content padding-vertical *ngIf="!timerStarted">
+  <div *ngIf="!loading && submit?.status != 2">
+    <ion-card>
+      <ion-card-header>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4"
+              ><img
+                src="https://cdn-images-1.medium.com/max/800/0*ngXgBNNdx6iiWP8q.png"
+                alt=""
+                class="class-image"
+            /></ion-col>
+            <ion-col size="8">
+              <ion-text color="dark">
+                <h4 class="text-header">{{ activity?.title }}</h4>
+              </ion-text>
+              <ion-text color="dark">
+                <p class="text-wrap">
+                  {{ activity?.instruction }}
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <ion-text>
+                <p class="footer">
+                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
+
+                  {{ convertToDate(activity?.deadline.seconds) | date: 'dd MMM
+                  yyyy' }}
+                </p>
+              </ion-text>
+            </ion-col>
+            <ion-col size="4">
+              <ion-text>
+                <p class="footer">
+                  <ion-icon slot="icon-only" name="time"></ion-icon>
+                  {{ activity?.time_limit }} mins
+                </p>
+              </ion-text>
+            </ion-col>
+            <ion-col size="4">
+              <ion-text>
+                <p class="footer">
+                  Turned-in: {{ activity?.submits ? activity.submits.length : 0
+                  }}
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+    </ion-card>
+    <ion-button color="primary" (click)="startActivity()" expand="block">
+      {{ continuing ? 'Continue' : 'Start' }}
+    </ion-button>
+    <ion-button
+      color="medium"
+      [routerLink]="['/my-activities']"
+      routerLinkActive="router-link-active"
+      expand="block"
+    >
+      Back
+    </ion-button>
+  </div>
+  <div *ngIf="!loading && submit?.status == 2">
+    <ion-card>
+      <ion-card-header>
+        <ion-grid fixed>
+          <ion-row>
+            <img
+              [src]="passed(submit.score, submit.total_items) ? 'assets/images/passed.png' : 'assets/images/failed.png'"
+              alt=""
+              class="submit-status"
+            />
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h4 class="text-header">Title: {{ activity?.title }}</h4>
+              </ion-text>
+              <ion-text color="dark" text-capitalize>
+                <p class="text-wrap ">
+                  Type: {{ activity?.type }} | {{ activity?.term }}
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <ion-text>
+                <p class="footer">
+                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
+
+                  Score:
+                  <span
+                    [ngClass]="{
+                  'ion-color-success': passed(
+                    submit.score,
+                    submit.total_items
+                  ),
+                  'ion-color-danger': !passed(
+                    submit.score,
+                    submit.total_items
+                  )
+                }"
+                  >
+                    {{ submit.score }}
+                  </span>
+                  / {{ submit.total_items}} points
+                </p>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text>
+                <p class="footer">
+                  <ion-icon slot="icon-only" name="calendar"></ion-icon>
+
+                  Date Submitted: {{
+                  convertToDate(submit?.date.submitted.seconds) | date: 'dd MMM
+                  yyyy' }}
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+    </ion-card>
+    <div *ngIf="!onView">
+      <ion-button color="primary" (click)="viewActivity()" expand="block">
+        View
+      </ion-button>
+      <ion-button
+        color="medium"
+        [routerLink]="['/my-activities']"
+        routerLinkActive="router-link-active"
+        expand="block"
+      >
+        Back
+      </ion-button>
+    </div>
+    <div *ngIf="onView">
+      <ion-slides
+        mode="ios"
+        pager="ios"
+        padding-bottom
+        (ionSlideNextStart)="nextQuestion()"
+        (ionSlidePrevStart)="prevQuestion()"
+      >
+        <ion-slide *ngFor="let question of activity.questions" padding-bottom>
+          <ion-card class="w-100" padding-vertical>
+            <ion-card-subtitle
+              >Question #{{question.number}} ({{question.points}}
+              points)</ion-card-subtitle
+            >
+            <ion-card-title>{{question.text}}</ion-card-title>
+            <hr />
+            <ion-card-content [ngSwitch]="question.type">
+              <ion-radio-group name="options" *ngSwitchCase="'mc'">
+                <ion-item lines="none" *ngFor="let opt of question.options">
+                  <ion-icon
+                    name="checkmark-circle-outline"
+                    color="success"
+                    *ngIf="opt.isCorrect"
+                    margin-horizontal
+                  ></ion-icon>
+                  <span *ngIf="!opt.isCorrect" class="ion-margin-horizontal"
+                    >{{opt.key}}.</span
+                  >
+                  <ion-input
+                    type="text"
+                    [value]="opt.value"
+                    readonly
+                    [class]="question.answer?.key == opt.key ?
+                          question.answer?.isCorrect ? 'isCorrect' : 'isNotCorrect' : ''"
+                  ></ion-input>
+                  <ion-radio
+                    slot="end"
+                    [checked]="question.answer.key == opt.key"
+                    disabled
+                  ></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+              <ion-input
+                type="text"
+                placeholder="Answer"
+                *ngSwitchCase="'sa'"
+                [value]="'Correct Answer: ' + question.options[0].value"
+                readonly
+              >
+              </ion-input>
+              <ion-input
+                type="text"
+                placeholder="Answer"
+                *ngSwitchCase="'sa'"
+                [value]="
+                          selectedQuestion.answer
+                            ? selectedQuestion.answer?.value
+                            : ''
+                        "
+                [class]="question.answer.isCorrect ? 'isCorrect': 'isNotCorrect'"
+                readonly
+              ></ion-input>
+
+              <ion-radio-group name="options" *ngSwitchCase="'tof'">
+                <ion-item lines="none">
+                  <ion-icon
+                    name="checkmark-circle-outline"
+                    color="success"
+                    *ngIf="question.options[0].value"
+                    margin-horizontal
+                  ></ion-icon>
+                  <ion-icon
+                    name="radio-button-off"
+                    color="light"
+                    *ngIf="!question.options[0].value"
+                    margin-horizontal
+                  >
+                  </ion-icon>
+                  <ion-input
+                    type="text"
+                    value="True"
+                    readonly
+                    text-center
+                    [class]="question.answer.value ? question.answer.isCorrect ? 'isCorrect' : 'isNotCorrect'  : ''"
+                  ></ion-input>
+                  <ion-radio
+                    slot="end"
+                    disabled
+                    [checked]="selectedQuestion.answer?.value == true"
+                  ></ion-radio>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-icon
+                    name="checkmark-circle-outline"
+                    color="success"
+                    *ngIf="!question.options[0].value"
+                    margin-horizontal
+                  >
+                  </ion-icon>
+                  <ion-icon
+                    name="radio-button-off"
+                    color="light"
+                    *ngIf="question.options[0].value"
+                    margin-horizontal
+                  >
+                  </ion-icon>
+                  <ion-input
+                    type="text"
+                    value="False"
+                    readonly
+                    text-center
+                    [class]="!question.answer.value ? question.answer.isCorrect ? 'isCorrect' : 'isNotCorrect'  : ''"
+                  ></ion-input>
+                  <ion-radio
+                    slot="end"
+                    [checked]="selectedQuestion.answer?.value == false"
+                    disabled
+                  >
+                  </ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content padding *ngIf="timerStarted">
+  <ion-card text-center>
+    <ion-icon name="time"></ion-icon> {{ trunc(submit?.timer_left / 60) }}:{{
+    submit?.timer_left % 60 | number: '2.0' }}</ion-card
+  >
+
+  <ion-slides
+    mode="ios"
+    pager="ios"
+    padding-bottom
+    (ionSlideNextStart)="nextQuestion()"
+    (ionSlidePrevStart)="prevQuestion()"
+  >
+    <ion-slide *ngFor="let question of activity.questions" padding-bottom>
+      <ion-card class="w-100" padding-vertical>
+        <ion-card-subtitle
+          >Question #{{question.number}} ({{question.points}}
+          points)</ion-card-subtitle
+        >
+        <ion-card-title>{{question.text}}</ion-card-title>
+        <hr />
+        <ion-card-content [ngSwitch]="question.type">
+          <ion-radio-group name="options" *ngSwitchCase="'mc'">
+            <ion-item lines="none" *ngFor="let opt of question.options">
+              <ion-input
+                type="text"
+                [value]="opt.key + '.  ' + opt.value"
+                readonly
+              ></ion-input>
+              <ion-radio
+                slot="end"
+                [checked]="question.answer.key == opt.key"
+                (click)="setMcAnswer(opt)"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-input
+            type="text"
+            placeholder="Answer"
+            *ngSwitchCase="'sa'"
+            [value]="
+                    selectedQuestion.answer
+                      ? selectedQuestion.answer?.value
+                      : ''
+                  "
+            (keyup)="setSaAnswer($event)"
+          >
+          </ion-input>
+          <ion-radio-group name="options" *ngSwitchCase="'tof'">
+            <ion-item lines="none">
+              <ion-input
+                type="text"
+                placeholder="A"
+                value="True"
+                readonly
+                text-center
+              ></ion-input>
+              <ion-radio
+                slot="end"
+                (click)="setTofAnswer('true')"
+                [checked]="selectedQuestion.answer?.value == 'true'"
+              ></ion-radio>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-input
+                type="text"
+                placeholder="B"
+                value="False"
+                readonly
+                text-center
+              ></ion-input>
+              <ion-radio
+                slot="end"
+                (click)="setTofAnswer('false')"
+                [checked]="selectedQuestion.answer?.value == 'false'"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <ion-button (click)="presentAlertConfirm()" expand="block">
+    Submit
+  </ion-button>
+</ion-content>

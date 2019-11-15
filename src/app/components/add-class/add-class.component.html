@@ -1,4 +1,4 @@
-<ion-list>
+<ion-list *ngIf="user.role == 'instructor'">
   <ion-list-header>
     <ion-label>ADD CLASS</ion-label>
     <ion-button fill="clear" (click)="dismissModal()">
@@ -22,3 +22,21 @@
     ADD
   </ion-button>
 </ion-list>
+
+<ion-list *ngIf="user.role == 'student'">
+  <ion-list-header>
+    <ion-label>JOIN CLASS</ion-label>
+    <ion-button fill="clear" (click)="dismissModal()">
+      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-list-header>
+  <ion-item>
+    <ion-label>Class Code:</ion-label>
+    <ion-input [(ngModel)]="classCode"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="joinClass()" expand="block" margin>
+    JOIN
+  </ion-button>
+</ion-list>
+
