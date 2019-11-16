@@ -32,7 +32,7 @@ export class TakeExamsPage implements OnInit {
   today = new Date();
   onView = false;
 
-  countdownTimer: NodeJS.Timer;
+  countdownTimer: any;
   constructor(
     public route: ActivatedRoute,
     private router: Router,

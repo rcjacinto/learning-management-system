@@ -87,6 +87,11 @@ export class AppComponent {
           } else if (this.user.role == "parent") {
             this.appPages = [
               {
+                title: "Grades",
+                url: "/view-my-student",
+                icon: "school"
+              },
+              {
                 title: "Profile",
                 url: "/profile",
                 icon: "ios-contact"

@@ -14,19 +14,6 @@
         </ion-card>
         <ion-list>
           <ion-card no-margin>
-            <ion-menu-toggle auto-hide="false">
-              <ion-item
-                [routerDirection]="'root'"
-                [routerLink]="['/view-my-student']"
-              >
-                <ion-icon slot="start" name="school" color="light"></ion-icon>
-                <ion-label>
-                  Grades
-                </ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-card>
-          <ion-card no-margin>
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
               <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
                 <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
