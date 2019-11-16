@@ -32,6 +32,9 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.platform.backButton.subscribeWithPriority(1, () => {
+        this.presentAlertConfirm();
+      });
       this.statusBar.styleDefault();
       this.userData$.subscribe(res => {
         console.log(res);
@@ -159,4 +162,30 @@ export class AppComponent {
 
     await alert.present();
   }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: "Confirm!",
+      message: "Exit the app?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: () => {
+            console.log("Confirm Cancel: blah");
+          }
+        },
+        {
+          text: "Okay",
+          handler: () => {
+            navigator["app"].exitApp();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }
+
