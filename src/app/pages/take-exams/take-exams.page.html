@@ -132,14 +132,6 @@
       <ion-button color="primary" (click)="viewActivity()" expand="block">
         View
       </ion-button>
-      <ion-button
-        color="medium"
-        [routerLink]="['/my-activities']"
-        routerLinkActive="router-link-active"
-        expand="block"
-      >
-        Back
-      </ion-button>
     </div>
     <div *ngIf="onView">
       <ion-slides
@@ -267,6 +259,9 @@
         </ion-slide>
       </ion-slides>
     </div>
+    <ion-button color="medium" [routerLink]="['/my-activities']" routerLinkActive="router-link-active" expand="block">
+      Back
+    </ion-button>
   </div>
 </ion-content>
 
@@ -301,7 +296,7 @@
               ></ion-input>
               <ion-radio
                 slot="end"
-                [checked]="question.answer.key == opt.key"
+                [checked]="question.answer?.key == opt.key"
                 (click)="setMcAnswer(opt)"
               ></ion-radio>
             </ion-item>

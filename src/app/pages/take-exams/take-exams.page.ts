@@ -306,7 +306,7 @@ export class TakeExamsPage implements OnInit {
 
   hasEnded(): boolean {
     return (
-      this.today < new Date(this.convertToDate(this.activity.deadline.seconds))
+      this.today > this.convertToDate(this.activity.deadline.seconds)
     );
   }
 
