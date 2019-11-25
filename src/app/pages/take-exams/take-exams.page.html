@@ -54,7 +54,12 @@
         </ion-grid>
       </ion-card-header>
     </ion-card>
-    <ion-button color="primary" (click)="startActivity()" expand="block">
+    <ion-button
+      color="primary"
+      (click)="startActivity()"
+      expand="block"
+      *ngIf="!hasEnded()"
+    >
       {{ continuing ? 'Continue' : 'Start' }}
     </ion-button>
     <ion-button
@@ -259,7 +264,12 @@
         </ion-slide>
       </ion-slides>
     </div>
-    <ion-button color="medium" [routerLink]="['/my-activities']" routerLinkActive="router-link-active" expand="block">
+    <ion-button
+      color="medium"
+      [routerLink]="['/my-activities']"
+      routerLinkActive="router-link-active"
+      expand="block"
+    >
       Back
     </ion-button>
   </div>
