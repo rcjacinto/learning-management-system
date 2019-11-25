@@ -289,11 +289,14 @@
         <ion-card-content [ngSwitch]="question.type">
           <ion-radio-group name="options" *ngSwitchCase="'mc'">
             <ion-item lines="none" *ngFor="let opt of question.options">
-              <ion-input
+              <!-- <ion-input
                 type="text"
                 [value]="opt.key + '.  ' + opt.value"
                 readonly
-              ></ion-input>
+              ></ion-input> -->
+              <div class="options">
+                {{opt.key}}. {{opt.value}}
+              </div>
               <ion-radio
                 slot="end"
                 [checked]="question.answer?.key == opt.key"
