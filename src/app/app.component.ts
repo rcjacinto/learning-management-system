@@ -113,7 +113,30 @@ export class AppComponent {
   }
 
   logOut() {
-    this.confirmLogout();
+    // this.confirmLogout();
+    const empty = {
+      id: "",
+      role: "",
+      name: {
+        first: "",
+        last: "",
+        mi: ""
+      },
+      email: "",
+      mobile: 0,
+      dob: "",
+      date: {
+        created: "",
+        modified: ""
+      },
+      image: "",
+      gender: "",
+      address: ""
+    };
+    this.autService.doLogout().then(() => {
+      this.store.dispatch(new SetUser(null));
+      this.menuCotroller.close();
+    });
   }
 
   async confirmLogout() {

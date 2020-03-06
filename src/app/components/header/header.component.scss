@@ -1,10 +1,13 @@
 ion-title {
   font-size: 0.8rem !important;
+  color:white !important;
 }
-
+ion-icon {
+ color:white !important;
+}
 .logo {
   position: absolute;
   z-index: 99;
-  top: 20px;
+  top: 14px;
   left: 15px;
 }

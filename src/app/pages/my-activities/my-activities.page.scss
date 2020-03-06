@@ -8,7 +8,7 @@ ion-segment {
 }
 ion-segment-button {
   --background: #ffffff;
-  --background-checked: var(--ion-color-danger);
+  --background-checked: var(--ion-color-blue);
   --border-radius: 4px;
   --color: grey;
   --color-checked: #ffffff;
@@ -74,7 +74,7 @@ ion-list {
 }
 
 ion-select {
-  background: var(--ion-color-danger);
+  background: var(--ion-color-blue);
   border: 1px solid black;
   color: #ffffff;
   margin: 0 0.8rem;
