@@ -1,8 +1,7 @@
 <ion-content>
   <div class="main">
-    <img src="assets/images/trimex.png" class="logo" />
     <h1 class="ion-text-center">
-      <span class="title">LMS </span> <span class="subtitle">Suite</span>
+      <span class="title text-light">DRRR M-Learning</span>
     </h1>
     <p *ngIf="!loginIsClicked" class="description">
       Enhancing Teaching Approaches on Selected Program in Senior High School
@@ -15,7 +14,6 @@
     >
       <div class="login-div">
         <ion-item>
-          <ion-icon slot="start" name="mail"></ion-icon>
           <ion-input
             placeholder="Email"
             type="email"
@@ -23,14 +21,13 @@
           ></ion-input>
           <ion-label
             class="error-label"
-            color="danger"
+            color="primary"
             *ngIf="submitted && f.email.errors"
           >
             <ion-icon name="alert"></ion-icon>
           </ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon slot="start" name="key"></ion-icon>
           <ion-input
             placeholder="Password"
             type="password"
@@ -38,7 +35,7 @@
           ></ion-input>
           <ion-label
             class="error-label"
-            color="danger"
+            color="primary"
             *ngIf="submitted && f.password.errors"
           >
             <ion-icon name="alert"></ion-icon>
@@ -55,9 +52,11 @@
         <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
       </ion-button>
       <p class="register-now">
-        <a [routerLink]="['/register']" routerLinkActive="router-link-active">
-          Register now
-        </a>
+        <ion-button [routerLink]="['/register']" 
+        expand="block" color="light" routerLinkActive="router-link-active" 
+        fill="outline">
+          Register
+        </ion-button>
       </p>
     </form>
     <div class="btns" *ngIf="!loginIsClicked">
