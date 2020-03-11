@@ -1,11 +1,10 @@
 <ion-content>
   <div class="main">
     <h1 class="ion-text-center">
-      <span class="title">DRRR M-Learning</span>
-      <p class="subtitle">Learning Management System</p>
+      <img src="assets/images/main-logo.png" class="main-logo" alt="">
     </h1>
     <p class="ion-text-center description">
-      Registration Option
+      Registration Options:
     </p>
     <div *ngIf="!registering">
       <div class="btns">
@@ -19,10 +18,10 @@
         <br/>
         <ion-button
           expand="block"
-          color="secondary"
+          color="blue"
           (click)="selectType('student')"
         >
-          I am a Student
+        <p class="student-button">I am a Student</p>
         </ion-button>
       </div>
 
@@ -119,13 +118,13 @@
           <ion-button
             (click)="registerAccount()"
             expand="block"
-            color="secondary"
+            color="blue"
             [disabled]="loading"
           >
             {{ loading ? '' : 'Submit' }}
             <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
           </ion-button>
-          <ion-button expand="block" color="dark" fill="outline" (click)="cancelRegistering()">
+          <ion-button expand="block" color="light" fill="outline" (click)="cancelRegistering()">
             Back
           </ion-button>
         </form>
@@ -196,12 +195,12 @@
             (click)="registerAccount()"
             expand="block"
             [disabled]="loading"
-            color="secondary"
+            color="blue"
           >
             {{ loading ? '' : 'Submit' }}
             <ion-spinner name="dots" *ngIf="loading"></ion-spinner>
           </ion-button>
-          <ion-button expand="block" color="dark" fill="outline" (click)="cancelRegistering()">
+          <ion-button expand="block" color="light" fill="outline" (click)="cancelRegistering()">
             Back
           </ion-button>
         </form>

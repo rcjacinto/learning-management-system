@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   height: 100%;
-  padding: 8vh 3vh;
+  padding: 20vh 3vh;
   background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&w=1000&q=80');
   background-size: cover;
   position: relative;
@@ -36,6 +36,7 @@
 .subtitle {
   color: var(--ion-color-light);
   margin: 0;
+  margin-top: -15px;
   font-size: 1rem;
 }
 
@@ -63,6 +64,10 @@
 form {
   ion-button {
     margin: 10px 0 !important;
-    --background: #3880ff !important;
+    --background: #00A3DE !important;
   }
+}
+
+.main-logo {
+  width: 16rem;
 }

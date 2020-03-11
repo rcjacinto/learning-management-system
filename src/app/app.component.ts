@@ -45,12 +45,12 @@ export class AppComponent {
               {
                 title: "Dashboard",
                 url: "/tabs",
-                icon: "school"
+                icon: "ios-grid"
               },
               {
                 title: "Profile",
                 url: "/profile",
-                icon: "ios-contact"
+                icon: "ios-person"
               },
               {
                 title: "About",
@@ -63,22 +63,22 @@ export class AppComponent {
               {
                 title: "Dashboard",
                 url: "/student-dashboard",
-                icon: "school"
+                icon: "ios-grid"
               },
               {
                 title: "Profile",
                 url: "/profile",
-                icon: "ios-contact"
+                icon: "ios-person"
               },
               {
                 title: "My Activities",
                 url: "/my-activities",
-                icon: "ios-paper"
+                icon: "ios-list"
               },
               {
                 title: "My Grades",
                 url: "/my-grades",
-                icon: "ios-pie"
+                icon: "ios-podium"
               },
 
               {
@@ -92,7 +92,7 @@ export class AppComponent {
               {
                 title: "Grades",
                 url: "/view-my-student",
-                icon: "school"
+                icon: "ios-podium"
               },
               {
                 title: "Profile",

@@ -1,9 +1,10 @@
 <app-header [title]="'DASHBOARD'"></app-header>
-<ion-segment mode="ios" [(ngModel)]="segment">
+<ion-segment mode="md" [(ngModel)]="segment">
   <ion-segment-button mode="ios" checked value="anouncements">
     <ion-label>Anouncements</ion-label>
   </ion-segment-button>
   <ion-segment-button mode="ios" value="classes">
+    <!-- <img src="assets/images/classes-icon.svg"/> -->
     <ion-label>My Classes</ion-label>
   </ion-segment-button>
 </ion-segment>
@@ -14,6 +15,7 @@
     </ion-select-option>
   </ion-select>
 </div>
+
 <ion-content>
   <div [ngSwitch]="segment">
     <div *ngSwitchCase="'anouncements'" class="anouncements">
@@ -134,7 +136,7 @@
         </div>
       </ion-list>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="light" (click)="presentModal()">
+        <ion-fab-button margin color="blue" (click)="presentModal()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>

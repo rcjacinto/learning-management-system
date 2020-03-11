@@ -23,6 +23,7 @@
   }
 
   ion-menu {
+    background-color: rgba(8, 62, 124, 0.466);
     --max-width: 60%;
     --min-width: 60%;
     --width: 60%;
@@ -34,7 +35,7 @@
     }
 
     ion-card-content {
-      background: #343a40;
+      box-shadow: none !important; 
       min-height: 100px;
       img {
         width: 65px;
@@ -68,4 +69,12 @@ ion-footer {
     margin: 0 auto;
     display: block;
   }
+}
+
+.title-name {
+  font-weight: bold;
+}
+
+ion-card {
+  box-shadow: none;
 }

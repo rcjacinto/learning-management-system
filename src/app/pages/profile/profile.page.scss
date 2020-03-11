@@ -16,6 +16,10 @@
   color: white !important;
 }
 
+ion-content {
+  --background: rgb(234, 248, 255);
+}
+
 ion-card-content {
   min-height: 50px;
 }

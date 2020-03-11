@@ -1,15 +1,16 @@
 ion-content {
-  --background: #f1f1f1;
+  --background: rgb(234, 248, 255);
 }
+
 ion-segment-button {
   --background: #ffffff;
   --background-checked: var(--ion-color-blue);
-  --border-color: #222222;
+  --border-color: #00A3DE;
   --border-radius: 4px;
-  --color: grey;
+  --color: #00A3DE;
   --color-activated: black;
   --color-checked: #ffffff;
-  --indicator-color-checked: #222222;
+  --indicator-color-checked: #00A3DE;
   --transition: background-color 15ms linear;
   font-size: 0.5rem;
 }
@@ -22,13 +23,13 @@ ion-searchbar {
 }
 
 ion-list {
-  background: #f1f1f1;
+  background: rgb(234, 248, 255);
   padding: 0;
 }
 
 ion-select {
   background: var(--ion-color-blue);
-  border: 1px solid black;
+  border: 1px solid #fff;
   color: #ffffff;
   margin: 1rem 0.8rem 0;
   font-size: 0.8rem;
