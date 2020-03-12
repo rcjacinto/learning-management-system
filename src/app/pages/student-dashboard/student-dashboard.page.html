@@ -1,11 +1,12 @@
 <app-header [title]="'DASHBOARD'"></app-header>
 <ion-segment mode="md" [(ngModel)]="segment">
   <ion-segment-button mode="ios" checked value="anouncements">
-    <ion-label>Anouncements</ion-label>
+    <!-- <img src="assets/images/announcement-icon.png" class="button-logo"/> -->
+    <ion-label class="top-button">Anouncements</ion-label>
   </ion-segment-button>
   <ion-segment-button mode="ios" value="classes">
-    <!-- <img src="assets/images/classes-icon.svg"/> -->
-    <ion-label>My Classes</ion-label>
+    <!-- <img src="assets/images/classes-icon.png" class="button-logo"/> -->
+    <ion-label class="top-button">My Classes</ion-label>
   </ion-segment-button>
 </ion-segment>
 <div class="classes-select" *ngIf="segment == 'anouncements' && classlist.length > 0">

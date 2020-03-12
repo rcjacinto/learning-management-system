@@ -1,14 +1,12 @@
 .main {
-  background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&w=1000&q=80');
-  background-size: cover;
+  background-image: radial-gradient(#27AE70 20%, #208F57 80%);
   width: 100%;
   height: 100%;
-  padding: 9vh 3vh;
-  position: relative;
+  padding: 1vh 3vh;
   .description {
     text-align: center;
     color: #fff;
-    margin: 40px 40px 20px 40px;
+    margin: 20px 40px 20px 40px;
     font-weight: bold;
   }
   ion-button {
@@ -20,7 +18,7 @@
 
 .logo {
   max-height: 10vh;
-  margin: 10px auto 25px;
+  margin: 2px auto 25px;
   display: block;
 }
 
@@ -42,8 +40,7 @@
 }
 
 .register-div {
-  padding: 5px;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
   ion-item {
     margin:20px 0 0;
     --background: white;
@@ -75,7 +72,7 @@ form {
 }
 
 .main-logo {
-  width: 16rem;
+  width: 13rem;
 }
 
 .student-button {

@@ -20,7 +20,7 @@
       </div>
       <input type="file" #file hidden (change)="uploadImage($event)" />
       <ion-button (click)="file.click()" class="upload-btn" color="light">
-        <ion-icon slot="icon-only" name="camera" color="dark"></ion-icon>
+        <ion-icon slot="icon-only" name="camera" color="blue"></ion-icon>
       </ion-button>
     </ion-card-content>
   </ion-card>
@@ -28,7 +28,7 @@
   <ion-card>
     <ion-list padding>
       <ion-item>
-        <ion-icon name="contact" slot="start"></ion-icon>
+        <ion-icon name="contact" slot="start" color="blue"></ion-icon>
 
         <ion-input
           type="text"
@@ -42,7 +42,7 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-icon name="compass" slot="start"></ion-icon>
+        <ion-icon name="compass" slot="start" color="blue"></ion-icon>
         <ion-input
           type="text"
           placeholder="Address"
@@ -50,7 +50,7 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-icon name="call" slot="start" color="blue"></ion-icon>
         <ion-input
           type="number"
           placeholder="Mobile number"

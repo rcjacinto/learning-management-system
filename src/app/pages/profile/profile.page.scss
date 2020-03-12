@@ -17,7 +17,7 @@
 }
 
 ion-content {
-  --background: rgb(234, 248, 255);
+  --background: rgb(234, 255, 240);
 }
 
 ion-card-content {
@@ -33,6 +33,7 @@ ion-title {
 }
 
 .user-email {
+  margin-top: 15px;
   font-size: 0.8rem !important;
 }
 
@@ -44,7 +45,7 @@ ion-input {
   position: absolute;
   bottom: 5px;
   left: 60px;
-  padding: 0 !important;
+  padding: 2px !important;
   font-size: 12px;
   ion-icon {
     font-size: 15px;

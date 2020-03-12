@@ -1,17 +1,17 @@
 ion-content {
-  --background: rgb(234, 248, 255);
+  --background: rgb(234, 255, 240);
 }
 
 ion-segment {
   padding: 15px;
-  background: rgb(203, 235, 243);
+  background: rgb(203, 243, 220);
 }
 ion-segment-button {
-  border: solid 2px #00A3DE;
+  border: solid 2px #19703D;
   --background: #ffffff;
   --background-checked: var(--ion-color-blue);
   --border-radius: 4px;
-  --color: #00A3DE;
+  --color: #19703D;
   --color-checked: #ffffff;
   --indicator-color-checked: #222222;
   --transition: background-color 15ms linear;
@@ -21,7 +21,7 @@ ion-segment-button {
 }
 
 ion-card {
-  --background: #ffffff;
+  --background: rgb(255, 255, 255);
   ion-card-header {
     padding: 0;
   }
@@ -64,7 +64,7 @@ ion-grid {
 }
 
 ion-list {
-  background: rgb(234, 248, 255);
+  background: rgb(234, 255, 240);
   padding: 10px 0 0 0;
 }
 

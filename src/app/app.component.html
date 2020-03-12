@@ -1,12 +1,13 @@
 <ion-app>
   <ion-split-pane>
     <ion-menu type="overlay">
-      <ion-content color="blue">
-        <ion-card>
+      <ion-content>
+        <img src="assets/images/sidebar-logo.png" class="sidebar-logo"/>
+        <ion-card no-margin>
           <ion-card-header> </ion-card-header>
           <ion-card-content>
-            <img [src]="user?.image" alt="" />
-            <ion-label class="title-name" text-center>
+            <img [src]="user?.image" alt="" class="profile-picture" />
+            <ion-label class="title-name" color="blue" text-center>
               {{ user?.name.first }} {{ user?.name.last }}
               <p class="ion-text-capitalize">{{ user?.role }}</p>
             </ion-label>
@@ -15,18 +16,19 @@
         <ion-list>
           <ion-card no-margin>
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-              <ion-item color="blue" [routerDirection]="'root'" [routerLink]="[p.url]">
-                <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
-                <ion-label color="light">
+              <ion-item color="light" [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" [name]="p.icon" color="blue"></ion-icon>
+                <ion-label color="blue">
                   {{ p.title }}
                 </ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-card>
-          <ion-card no-margin class="ion-margin-top">
-            <ion-item button (click)="logOut()" color="blue">
-              <ion-icon slot="start" name="power" color="light"></ion-icon>
-              <ion-label color="light">Logout</ion-label>
+          <hr class="line-color">
+          <ion-card no-margin>
+            <ion-item button (click)="logOut()" color="light">
+              <ion-icon slot="start" name="power" color="blue"></ion-icon>
+              <ion-label color="blue">Logout</ion-label>
             </ion-item>
           </ion-card>
         </ion-list>
