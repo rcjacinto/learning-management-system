@@ -52,11 +52,6 @@ export class AppComponent {
                 url: "/profile",
                 icon: "ios-person"
               },
-              {
-                title: "About",
-                icon: "alert",
-                url: "/about"
-              }
             ];
           } else if (this.user.role == "student") {
             this.appPages = [
@@ -81,11 +76,6 @@ export class AppComponent {
                 icon: "ios-podium"
               },
 
-              {
-                title: "About",
-                icon: "alert",
-                url: "/about"
-              }
             ];
           } else if (this.user.role == "parent") {
             this.appPages = [
@@ -99,11 +89,6 @@ export class AppComponent {
                 url: "/profile",
                 icon: "ios-contact"
               },
-              {
-                title: "About",
-                icon: "alert",
-                url: "/about"
-              }
             ];
           }
         }
