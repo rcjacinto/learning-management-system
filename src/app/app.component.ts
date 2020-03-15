@@ -72,7 +72,7 @@ export class AppComponent {
               },
               {
                 title: "My Grades",
-                url: "/my-grades",
+                url: "/profile",
                 icon: "ios-podium"
               },
 

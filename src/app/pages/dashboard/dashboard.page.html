@@ -1,7 +1,7 @@
 <app-header [title]="'DRRR LEARNING'"></app-header>
 <ion-segment mode="ios" [(ngModel)]="segment">
   <ion-segment-button mode="ios" checked value="anouncements">
-    <ion-label>Anouncements</ion-label>
+    <ion-label>Post</ion-label>
   </ion-segment-button>
   <ion-segment-button mode="ios" value="classes">
     <ion-label>My Classes</ion-label>
@@ -66,31 +66,29 @@
           </ion-item>
           <ion-text color="dark">
             <p>
+              <ion-icon name="contrast" [color]="post.posted_to.color"></ion-icon>
+              {{ post.posted_to.name }}
               {{
                 post.type == 1
-                  ? 'Posted an Announcement to '
+                  ? 'Post'
                   : post.type == 2
-                  ? 'Posted an Assignement to '
+                  ? 'Assignment'
                   : post.type == 3
-                  ? 'Posted an Activity to'
+                  ? 'Activity'
                   : post.type == 4
                   ? post.submit.activity.type == 'quiz'
-                    ? 'Submitted a Quiz'
-                    : 'Submitted an Exam'
-                  : 'Submitted a post to'
+                    ? 'Quiz'
+                    : 'Exam'
+                  : 'Post'
               }}
-              <ion-icon
-                name="bookmark"
-                [color]="post.posted_to.color"
-              ></ion-icon>
-              {{ post.posted_to.name }}
             </p>
           </ion-text>
           <div class="post-card bg-light">
             <div>{{ post.message }}</div>
             <div *ngIf="post.type == 3">
               <div class="text-capitalize">
-                Type: {{ post.activity.type }} | {{ post.activity.term }}
+                <ion-button size="small" type="button" color="primary">{{ post.activity.type }}</ion-button>
+                <ion-button size="small" type="button" color="tertiary">{{ post.activity.term }}</ion-button>
               </div>
               <div>Title: {{ post.activity.title }}</div>
               <div>Instruction: {{ post.activity.instruction }}</div>
@@ -107,10 +105,10 @@
                 Type: {{ post.submit.activity.type }} |
                 {{ post.submit.activity.term }}
               </div>
-              <div>Title: {{ post.submit.activity.title }}</div>
-              <div>Score: {{ post.submit.score }}</div>
+              <div>{{ post.submit.activity.title }}</div>
+              <div>{{ post.submit.score }}</div>
               <div>
-                Date Submitted:
+              Date:
                 {{
                   convertToDate(post.submit.date.submitted.seconds)
                     | date: 'MMM dd yyyy hh:mm a'

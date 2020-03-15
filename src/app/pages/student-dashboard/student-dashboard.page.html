@@ -2,7 +2,7 @@
 <ion-segment mode="md" [(ngModel)]="segment">
   <ion-segment-button mode="ios" checked value="anouncements">
     <!-- <img src="assets/images/announcement-icon.png" class="button-logo"/> -->
-    <ion-label class="top-button">Anouncements</ion-label>
+    <ion-label class="top-button">Post</ion-label>
   </ion-segment-button>
   <ion-segment-button mode="ios" value="classes">
     <!-- <img src="assets/images/classes-icon.png" class="button-logo"/> -->
@@ -44,42 +44,37 @@
             <ion-label>
               <h1 class="ion-text-capitalize">
                 {{ post.posted_by.name.first }} {{ post.posted_by.name.last }}
+                <ion-button size="small" color="dark" class="ion-text-capitalize">{{ post.posted_by.role }}</ion-button>
               </h1>
-              <p class="ion-text-capitalize">{{ post.posted_by.role }}</p>
-              <p>
-                {{
-                  convertToDate(post.date.created.seconds)
-                    | date: 'MMM dd yyyy hh:mm '
-                }}
-              </p>
             </ion-label>
           </ion-item>
           <ion-text color="dark">
             <p>
+              <ion-icon name="contrast" [color]="post.posted_to.color"></ion-icon>
+              {{ post.posted_to.name }}
               {{
                 post.type == 1
-                  ? 'Posted an Announcement to '
+                  ? 'Post'
                   : post.type == 2
-                  ? 'Posted an Assignement to '
+                  ? 'Assignment'
                   : post.type == 3
-                  ? 'Posted an Activity to'
+                  ? 'Activity'
                   : post.type == 4
                   ? post.submit.activity.type == 'quiz'
-                    ? 'Submitted a Quiz'
-                    : 'Submitted an Exam'
-                  : 'Submitted a post to'
+                    ? 'Quiz'
+                    : 'Exam'
+                  : 'Post'
               }}
-              <ion-icon name="bookmark" [color]="post.posted_to.color"></ion-icon>
-              {{ post.posted_to.name }}
             </p>
           </ion-text>
           <div class="post-card bg-light">
             <div>{{ post.message }}</div>
             <div *ngIf="post.type == 3">
               <div class="text-capitalize">
-                Type: {{ post.activity.type }} | {{ post.activity.term }}
+                <ion-button size="small" type="button" color="primary">{{ post.activity.type }}</ion-button>
+                <ion-button size="small" type="button" color="tertiary">{{ post.activity.term }}</ion-button>
               </div>
-              <div>Title: {{ post.activity.title }}</div>
+              <div>{{ post.activity.title }}</div>
               <div>Instruction: {{ post.activity.instruction }}</div>
               <div>
                 Deadline:
@@ -119,7 +114,7 @@
       <ion-list margin-vertical>
         <ion-searchbar placeholder="Search" inputmode="text" mode="ios"></ion-searchbar>
         <ion-item button *ngFor="let list of classlist">
-          <ion-icon name="bookmark" slot="start" [color]="list.color"></ion-icon>
+          <ion-icon name="contrast" slot="start" [color]="list.color"></ion-icon>
           <ion-label>
             <h1>{{ list.name }}</h1>
             <!-- <p>{{ list.date.created | date: 'd MMM yyyy' }}</p> -->
