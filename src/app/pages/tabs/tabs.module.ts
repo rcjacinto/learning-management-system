@@ -38,10 +38,10 @@ const routes: Routes = [
         path: 'students',
         loadChildren: '../students/students.module#StudentsPageModule'
       },
-      {
-        path: 'grades',
-        loadChildren: '../grades/grades.module#GradesPageModule'
-      },
+      // {
+      //   path: 'grades',
+      //   loadChildren: '../grades/grades.module#GradesPageModule'
+      // },
       {
         path: 'library',
         loadChildren: '../library/library.module#LibraryPageModule'

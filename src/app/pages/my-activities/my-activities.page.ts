@@ -67,7 +67,11 @@ export class MyActivitiesPage implements OnInit {
   }
 
   convertToDate(date) {
-    return new Date(date * 1000);
+    if(date){
+      return new Date(date * 1000);
+    }else{
+      return null
+    }
   }
 
   async takeExams(activity) {

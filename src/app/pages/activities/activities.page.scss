@@ -1,7 +1,11 @@
 ion-content {
   --background: #f1f1f1;
 }
-
+.top-card{
+  background:#19703D;
+  padding: 6px 0px !important;
+  color:#f1f1f1; 
+}
 ion-segment {
   padding: 20px 15px 10px;
   background: #f1f1f1;
@@ -39,12 +43,14 @@ ion-card {
 }
 
 .text-wrap {
+  color:#19703D;
   overflow-wrap: normal !important;
   font-size: 0.7rem;
   margin: 0;
 }
 
 .text-header {
+  color:#19703D;
   margin: 5px 0;
   font-size: 0.8rem;
   font-weight: 600;
