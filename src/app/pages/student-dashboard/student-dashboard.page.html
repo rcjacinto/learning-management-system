@@ -44,7 +44,7 @@
             <ion-label>
               <h1 class="ion-text-capitalize">
                 {{ post.posted_by.name.first }} {{ post.posted_by.name.last }}
-                <ion-button size="small" color="dark" class="ion-text-capitalize">{{ post.posted_by.role }}</ion-button>
+                <ion-button size="small" color="blue" fill="clear" class="ion-text-capitalize">{{ post.posted_by.role }}</ion-button>
               </h1>
             </ion-label>
           </ion-item>
@@ -71,8 +71,8 @@
             <div>{{ post.message }}</div>
             <div *ngIf="post.type == 3">
               <div class="text-capitalize">
-                <ion-button size="small" type="button" color="primary">{{ post.activity.type }}</ion-button>
-                <ion-button size="small" type="button" color="tertiary">{{ post.activity.term }}</ion-button>
+                <ion-button size="small" type="button" color="blue"  fill="outline">{{ post.activity.type }}</ion-button>
+                <ion-button size="small" type="button" color="blue">{{ post.activity.term }}</ion-button>
               </div>
               <div>{{ post.activity.title }}</div>
               <div>Instruction: {{ post.activity.instruction }}</div>

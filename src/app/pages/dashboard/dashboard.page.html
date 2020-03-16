@@ -1,10 +1,10 @@
-<app-header [title]="'DRRR LEARNING'"></app-header>
+<app-header [title]="'DASHBOARD'"></app-header>
 <ion-segment mode="ios" [(ngModel)]="segment">
   <ion-segment-button mode="ios" checked value="anouncements">
-    <ion-label>Post</ion-label>
+    <ion-label class="top-button">Post</ion-label>
   </ion-segment-button>
   <ion-segment-button mode="ios" value="classes">
-    <ion-label>My Classes</ion-label>
+    <ion-label class="top-button">My Classes</ion-label>
   </ion-segment-button>
 </ion-segment>
 <div class="classes-select" *ngIf="segment == 'anouncements'">
@@ -87,8 +87,8 @@
             <div>{{ post.message }}</div>
             <div *ngIf="post.type == 3">
               <div class="text-capitalize">
-                <ion-button size="small" type="button" color="primary">{{ post.activity.type }}</ion-button>
-                <ion-button size="small" type="button" color="tertiary">{{ post.activity.term }}</ion-button>
+                <ion-button size="small" type="button" color="blue"  fill="outline">{{ post.activity.type }}</ion-button>
+                <ion-button size="small" type="button" color="blue">{{ post.activity.term }}</ion-button>
               </div>
               <div>Title: {{ post.activity.title }}</div>
               <div>Instruction: {{ post.activity.instruction }}</div>
@@ -157,7 +157,7 @@
         </div>
       </ion-list>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="light" (click)="presentModal()">
+        <ion-fab-button color="blue" (click)="presentModal()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
