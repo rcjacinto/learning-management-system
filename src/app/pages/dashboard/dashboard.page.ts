@@ -41,6 +41,7 @@ export class DashboardPage implements OnInit {
       if (user) {
         this.classService.getAllclasses(user.id).subscribe(async list => {
           this.classlist = list;
+          console.log('list',list);
           if (this.classlist[0]) {
             this.selectedClass = this.classlist[0];
             console.log(this.selectedClass);

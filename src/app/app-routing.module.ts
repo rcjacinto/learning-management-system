@@ -90,7 +90,9 @@ const routes: Routes = [
     loadChildren: "./pages/take-exams/take-exams.module#TakeExamsPageModule",
     canActivate: [AuthGuard]
   },
-  { path: 'view-my-student', loadChildren: './pages/view-my-student/view-my-student.module#ViewMyStudentPageModule' }
+  { path: 'view-my-student', loadChildren: './pages/view-my-student/view-my-student.module#ViewMyStudentPageModule' },  { path: 'evaluated', loadChildren: './pages/evaluated/evaluated.module#EvaluatedPageModule' },
+  { path: 'evaluation', loadChildren: './pages/evaluation/evaluation.module#EvaluationPageModule' }
+
 ];
 
 @NgModule({

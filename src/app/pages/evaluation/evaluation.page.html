@@ -1,0 +1,97 @@
+<app-header [title]="'Teachers Evaluation'"></app-header>
+<div>
+  <div class="classes-select ion-margin-top" >
+    <ion-select
+      class="classes-options"
+      [(ngModel)]="selectedClass"
+      (ionChange)="setSelectedClass()"
+    >
+      <ion-select-option *ngFor="let list of classlist" [value]="list">
+        {{ list.name }}
+      </ion-select-option>
+    </ion-select>
+  </div>
+</div>
+<ion-content padding>
+  <div *ngIf="evalInfo">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h4 *ngIf="selectedClass"><font>{{selectedClass.instructor.name}} | {{selectedClass.name}}</font></h4>
+        <hr/>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4 class="mb-10">Evaluation Score: <b>{{evalInfo.total_rating}}</b></h4>
+            <h6 class="text-left"><b>Remarks:</b> {{evalInfo.comments}}</h6>
+          </div>
+          <div class="col-md-8">
+            <h5>Evaluation Overview</h5>
+            <ion-list>
+              <ion-item *ngFor="let ans of evalInfo.eval_data;">
+                <ion-label class="ion-text-wrap">{{ans.question}}</ion-label>
+                <ion-button slot="end">{{ans.answer}}</ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!evalInfo">
+    <div class="row">
+      <table class="table table-striped pa-4">
+        <tr class="text-center">
+          <th>Question</th>
+        </tr>
+        <tr *ngFor="let qs of questionInfo;let i = index">
+          <td>{{qs.question}}
+            <br/>
+            <ion-list>
+              <ion-radio-group [value]="i">
+                <ion-item lines="none" style="background:transparent;margin-bottom: 5px; width: 20%; display: inline-block">
+                  <ion-label>5</ion-label>
+                  <ion-radio (click)="toggleAns(5, i)" item-left value="5"></ion-radio>
+                </ion-item>
+                <ion-item lines="none" style="background:transparent;margin-bottom: 5px; width: 20%; display: inline-block">
+                  <ion-label>4</ion-label>
+                  <ion-radio (click)="toggleAns(4, i)" item-left value="4"></ion-radio>
+                </ion-item>
+            
+                <ion-item lines="none" style="background:transparent;margin-bottom: 5px; width: 20%; display: inline-block">
+                  <ion-label>3</ion-label>
+                  <ion-radio (click)="toggleAns(3, i)" item-left value="3"></ion-radio>
+                </ion-item>
+            
+                <ion-item lines="none" style="background:transparent;margin-bottom: 5px; width: 20%; display: inline-block">
+                  <ion-label>2</ion-label>
+                  <ion-radio (click)="toggleAns(2, i)" item-left value="2"></ion-radio>
+                </ion-item>
+
+                <ion-item lines="none" style="background:transparent;margin-bottom: 5px; width: 20%; display: inline-block">
+                  <ion-label>1</ion-label>
+                  <ion-radio (click)="toggleAns(1, i)" item-left value="1"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+            <hr/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <hr/>
+        <ion-textarea row="3" style="background-color: white;" [(ngModel)]="comments" placeholder="Remarks"></ion-textarea>
+      </div>
+      <div class="col-md-10"><br/></div>
+      <div class="col-md-2 text-right">
+        <ion-button
+          expand="block"
+          color="primary"
+          (click)="submitEval()"
+        >
+          Evaluate
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

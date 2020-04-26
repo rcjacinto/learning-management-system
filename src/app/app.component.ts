@@ -72,8 +72,13 @@ export class AppComponent {
               },
               {
                 title: "My Grades",
-                url: "/profile",
+                url: "/my-grades",
                 icon: "ios-podium"
+              },
+              {
+                title: "Teachers Evaluation",
+                url: "/evaluation",
+                icon: "ios-people"
               },
 
             ];
