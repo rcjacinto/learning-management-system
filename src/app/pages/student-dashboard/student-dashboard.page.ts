@@ -33,7 +33,9 @@ export class StudentDashboardPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-
+  openLink(link) {
+    window.open(link);
+  }
   ionViewWillEnter() {
     this.userData$.subscribe(user => {
       this.user = user;
@@ -46,6 +48,7 @@ export class StudentDashboardPage implements OnInit {
             this.postService
               .getPostsByClass(this.selectedClass.id)
               .subscribe(posts => {
+                console.log(posts);
                 this.postlist = posts;
               });
           }

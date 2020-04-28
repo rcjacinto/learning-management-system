@@ -68,6 +68,14 @@
             </p>
           </ion-text>
           <div class="post-card bg-light">
+            <div *ngIf="post.attachments">
+              Attachments:
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let attach of post.attachments">
+                  <small><a href="javascript:void(0);" (click)="openLink(attach.link)">{{attach.name}}</a></small>
+                </li>
+              </ul>
+            </div>
             <div>{{ post.message }}</div>
             <div *ngIf="post.type == 3">
               <div class="text-capitalize">
