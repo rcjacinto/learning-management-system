@@ -81,7 +81,6 @@ export class ProfilePage implements OnInit {
     const path = `profile_image/${Math.floor(
       Math.random() * 1000000
     )}${new Date().getTime()}_${file.name}`;
-    const fileRef = this.storage.ref(path);
 
     this.task = this.storage.upload(path, file);
     this.percentage = this.task.percentageChanges();

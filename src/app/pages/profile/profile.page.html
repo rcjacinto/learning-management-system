@@ -26,8 +26,8 @@
   </ion-card>
 
   <ion-card>
-    <ion-list padding>
-      <ion-item>
+    <ion-list>
+      <ion-item *ngIf="user">
         <ion-icon name="contact" slot="start" color="blue"></ion-icon>
 
         <ion-input
@@ -57,7 +57,7 @@
           [(ngModel)]="user.mobile"
         ></ion-input>
       </ion-item>
-      <ion-button (click)="updateProfile()" expand="full" color="blue" margin-top>
+      <ion-button (click)="updateProfile()" expand="full" color="blue">
         Update
       </ion-button>
     </ion-list>
