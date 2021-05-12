@@ -28,7 +28,7 @@
     "@larscom/ngrx-store-storagesync": "^5.7.0",
     "@ngrx/store": "^8.3.0",
     "@ngrx/store-devtools": "^8.3.0",
-    "chart.js": "^2.9.2",
+    "chart.js": "^2.9.4",
     "cordova-android": "^7.1.4",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
